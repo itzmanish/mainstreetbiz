@@ -102,5 +102,4 @@ ENV/
 
 *.sqlite3
 
-migrations/
 media/
