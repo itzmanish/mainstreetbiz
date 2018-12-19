@@ -89,6 +89,9 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item {% block news_li_class %} {% endblock %}mr-3">
+                        <a class="nav-link" href="{% url 'news:home' %}">News</a>
+                    </li>
                     <li class="nav-item {% block contact_li_class %} {% endblock %}mr-3">
                         <a class="nav-link" href="{% url 'contact:contact' %}">Contact</a>
                     </li>

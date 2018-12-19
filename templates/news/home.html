@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block news_li_class %} active {% endblock %}
+{% block title %} News {% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% if news %}
+            {% for news in news %}
+            <div class="post-preview">
+                <a href="{% url 'news:details' slug=news.slug %}">
+                    <h2 class="post-title">
+                        {{ news.title.title }}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{ news.summary | safe }}
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by
+                    <a href="#">Admin</a>
+                    on {{ news.pretty_date }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+            {% else %}
+            <div class="m-auto col-md-12">
+                <p>No News Story Available</p>
+            </div>
+            {% endif %}
+            <!-- Pager -->
+            <div class="clearfix">
+                {% if news.has_previous %}
+                <a class="btn btn-white float-left" href="?page=1">&larr; Newer News</a>
+                {% endif %}
+                {% if news.has_next %}
+                <a class="btn btn-white float-right" href="?page={{ news.next_page_number }}">Older News
+                    &rarr;</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}

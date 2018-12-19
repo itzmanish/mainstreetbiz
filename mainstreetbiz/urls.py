@@ -27,6 +27,7 @@ urlpatterns = [
     path('buying-process/', buyingProcess, name='buying-process'),
     path('listings/', include('listing.urls')),
     path('blog/', include('blog.urls')),
+    path('news/', include('news.urls')),
     path('about/', about, name='about'),
     path('team/', include('realtor.urls')),
     path('contact/', include('contact.urls')),

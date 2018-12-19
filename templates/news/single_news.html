@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block title %} {{ news.title }} {% endblock %}
+{% block news_li_class %} active {% endblock %}
+{% block content %}
+
+<section id="showcase">
+    <div class="container">
+        <a href="{% url 'news:home' %}" class="btn btn-light mb-3">Back To Blog</a>
+    </div>
+    <div class="home-search p-5 text-center">
+        <div class="overlay-blog p-5" style="background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{ news.image.url }})">
+            <div class="container ">
+                <div class="col-lg-8 col-md-10 m-auto">
+                    <div class="post-heading">
+                        <h1>{{ news.title }}</h1>
+                        <h2 class="subheading"> {{ news.subtitle }} </h2>
+                        <span class="meta">Posted by
+                            <a href="#">Admin</a>
+                            on {{ news.pretty_date }} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<article class="mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ news.content | safe }}
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}
