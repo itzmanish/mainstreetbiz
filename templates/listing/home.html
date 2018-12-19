@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} Buy a business {% endblock %}
+{% block listing_li_class %} active {% endblock %}
+
+{% block content %}
+<section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <div class="overlay p-5">
+        <h1 class="display-4 mb-4 text-bold">
+          Property Searching Just Got So Easy
+        </h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet
+          vel nostrum magnam
+          voluptatum tempore! Consectetur, id commodi!</p>
+        <div class="search">
+          <form action="{% url 'listing:search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Area</label>
+                <input type="text" name="area" class="form-control" placeholder="Area">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">State</label>
+                <select name="state" class="form-control">
+                  <option selected="true" disabled="disabled">State (All)</option>
+                  {% for key, value in state.items %}
+                  <option value="{{ key }}"> {{ value }} </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <!-- Form Row 2 -->
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Bedrooms</label>
+                <select name="business_type" class="form-control">
+                  <option selected="true" disabled="disabled">Business Type</option>
+                  {% for k, v in business_type_choice.items %}
+                  <option value="{{k}}"> {{v}} </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <select name="price" class="form-control" id="type">
+                  <option selected="true" disabled="disabled">Max Price (Any)</option>
+                  {% for k,v in price.items %}
+                  <option value="{{k}}"> {{v}} </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class=" pb-3">
+  <div class="container">
+    <div class="row">
+      {% if list %}
+      {% for list_item in list %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+            alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ list_item.image_main.url }}" />
+          <div class="card-img-overlay">
+            <h2>
+              <span class="badge badge-primary text-dark">${{ list_item.price | intcomma }}</span>
+            </h2>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ list_item.area }}</li>
+            <li class="list-group-item">{{ list_item.title }}</li>
+            <li class="list-group-item">{{ list_item.summary | safe }} </li>
+            <li class="list-group-item">Listing ID : {{ list_item.listing_id }}</li>
+          </ul>
+          <div class="card-body justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="{% url 'listing:listing_single' list_item.slug %}">
+                <button type="button" class="btn btn-sm btn-outline-secondary">More
+                  Details..</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+      {% else %}
+      <div class="col-md-12">
+        <p>No Listing Available</p>
+      </div>
+      {% endif %}
+      <!-- Pagination -->
+      <div class="col-md-12">
+        <nav aria-label="Page navigation ">
+          <ul class="pagination justify-content-center">
+            {% if list.has_other_pages %}
+            {% if list.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ list.previous_page_number }}" tabindex="-1">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in list.paginator.page_range %}
+            {% if list.number == i %}
+            <li class="page-item active"><a class="page-link " href="">{{ i }}</a>
+            </li>
+            {% else %}
+            <li class="page-item"><a class="page-link " href="?page={{i}}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ list.next_page_number }}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="" tabindex="-1">Next</a>
+            </li>
+            {% endif %}
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock%}

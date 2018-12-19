@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Mainstreetbiz {% endblock %}
+{% block home_li_class %} active {% endblock %}
+{% block content %}
+
+
+<section class="section">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-dark text-center">
+                <h1 class="title">{{ home.homepage_heading }}</h1>
+                <div class="subtitle">
+                    {{ home.homepage_subheading | safe}}
+                </div>
+            </div>
+        </div>
+        <div class="my-5">
+            <div class="card-deck d-block d-md-flex card-md-gutters-3">
+                <!-- Card -->
+                <article class="card text-center bg-secondary text-white">
+                    <div class="card-body p-7">
+                        <h3 class="h4 mb-3">I'm a Seller</h3>
+                        <div class="mb-4">
+                            {{ home.sellerbox_subtitle | safe}}
+                        </div>
+			<a class="btn btn-secondary" href="{% url 'contact:contact_for_sell' %}">
+                            Sell my Home
+                            <span class="fas fa-angle-right ml-2"></span>
+                        </a>
+                    </div>
+                </article>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <article class="card text-center bg-secondary text-white">
+                    <div class="card-body p-7">
+                        <h3 class="h4 mb-3">I'm a Buyer</h3>
+                        <div class="mb-4">
+                            {{ home.buyerbox_subtitle | safe}}
+                        </div>
+                        <a class="btn btn-secondary" href="{% url 'listing:home' %}">
+                            Buy a Home
+                            <span class="fas fa-angle-right ml-2"></span>
+                        </a>
+                    </div>
+                </article>
+                <!-- End Card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

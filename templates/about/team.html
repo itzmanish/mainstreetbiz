@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block title %} Our Team {% endblock %}
+{% block about_li_class %} active {% endblock %}
+{% block content %}
+<!-- Team -->
+<section id="team" class="py-5">
+    <div class="container">
+        <h2 class="text-center">Our Team</h2>
+        <div class="row text-center">
+            {% for realtor in realtors.all %}
+            <div class="col-md-6">
+                <img src="{{ realtor.photo.url }}" alt="" class="square mb-3" height="400px">
+                <h4>{{ realtor.name }}</h4>
+                <p class="">{{ realtor.description | safe }}</p>
+                <!-- <p class="text-success">
+                    <i class="fas fa-award text-success mb-3"></i> Realtor </p> -->
+                <hr>
+                <p>
+                    <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
+                <p>
+                    <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block listing_li_class %} active {% endblock %}
+{% block title %} {{ property.title }} {% endblock %}
+{% block content %}
+
+<!-- Page Header -->
+<section id="listing" class="py-4">
+    <div class="container">
+        {% include 'partials/_alert.html' %}
+        <a href="{% url 'listing:home' %}" class="btn btn-light mb-4">Back To Listings</a>
+        <div class="row">
+            <div class="col-md-9">
+                <h1>{{ property.title }}</h1>
+                <div class="overlay bg-transparent">
+                    <h2>
+                        <span class="badge badge-primary text-dark"> {{ property.business_type }} </span>
+                    </h2>
+                    <!-- Home Main Image -->
+                    <img src="{{ property.image_main.url }}" alt="" class="img-main img-fluid mb-3">
+                </div>
+                <!-- Thumbnails -->
+                <div class="row mb-3 thumbs">
+                    {% if property.image_1 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_1.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_1.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if property.image_2 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_2.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_2.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if property.image_3 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_3.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_3.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if property.image_4 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_4.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_4.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if property.image_5 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_5.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_5.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if property.image_6 %}
+                    <div class="col-md-2">
+                        <a href="{{ property.image_6.url }}" data-lightbox="home-images">
+                            <img src="{{ property.image_6.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Fields -->
+                <div class="row mb-4 fields">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-money-bill-alt"></i> Asking Price:
+                                <span class="float-right">$490,000</span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-list-alt"></i> Listing ID:
+                                <span class="float-right">{{ property.listing_id }}</span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-shopping-cart"></i> Inventory:
+                                <span class="float-right">{{ property.inventory }}</span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-chart-bar"></i> Revenues:
+                                <span class="float-right">{{ property.revenues }}
+                                </span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-chart-bar"></i> MLS Code:
+                                <span class="float-right"> {% if property.mls_code is null %} Not Disclosed {% else %}
+                                    {{ property.mls_code }} {% endif %}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-location-arrow"></i> Location:
+                                <span class="float-right">{{ property.city }}</span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-home"></i> Real Estate:
+                                <span class="float-right"> {% if not property.real_estates %} Not disclosed {% else %}
+                                    {{ property.real_estates_value }} {% endif %}
+                                </span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-dollar-sign"></i> Cash Flows:
+                                <span class="float-right"> {% if property.cash_flows == null %} Not disclosed
+                                    {% else %} {{ property.cash_flows }} {% endif %} </span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-couch"></i> FF&E:
+                                <span class="float-right"> {% if property.ffande == null %} Not disclosed
+                                    {% else %} {{ property.ffande }} {% endif %} </span>
+                            </li>
+                            <li class="list-group-item text-secondary p-2">
+                                <i class="fas fa-bed"></i> Realtor:
+                                <span class="float-right">{{ property.realtor.name }}
+                                </span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        {{ property.description | safe}}
+                    </div>
+
+                    <div class="pt-5 col-md-12">
+                        <h6> NDA & Disclaimer </h6>
+                        <hr>
+                        {{ property.disclaimer.disclaimer | safe }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img class="card-img-top" src=" {{ property.realtor.photo.url }} " alt="Seller of the month">
+                    <div class="card-body">
+                        <h5 class="card-title">Property Realtor</h5>
+                        <h6 class="text-secondary"> {{ property.realtor.name }} </h6>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make
+                    An
+                    Inquiry</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Inquiry Modal -->
+<div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'contact:contact_model' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="listing_id" value="{{ property.listing_id }}">
+                    <input type="hidden" name="listing_slug" value="{{ property.slug }}">
+                    <div class="form-group">
+                        <label for="property_name" class="col-form-label">Property:</label>
+                        <input type="text" name="listing_title" class="form-control" value=" {{ property.title }} ">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-form-label">Phone:</label>
+                        <input type="text" name="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="col-form-label">Message:</label>
+                        <textarea name="message" class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <input type="submit" value="Send" class="btn btn-block btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

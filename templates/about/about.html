@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %} About {% endblock %}
+{% block about_li_class %} active {% endblock %}
+{% block content %}
+<!-- Work -->
+<section class="text-dark mt-4">
+    <div class="container">
+        {{ about.about | safe }}
+    </div>
+</section>
+
+
+{% endblock %}

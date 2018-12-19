@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,700i,900,900i');
+#header {
+    height: 50px;
+    background: #fffffffa;
+    color: #000000;
+    border-bottom: 1px solid #c2c2c2;
+}
+#branding h1, #head span, #branding h1 a:link, #branding h1 a:visited {
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+#object-tools a:link,
+#object-tools a:visited,
+#user-tools a:link,
+#user-tools a:visited{
+    color: #000000;
+}
+#user-tools a:focus,
+#user-tools a:hover {
+    text-decoration: none;
+    border-bottom-color: #0082ff;
+    color: #0082ff;
+}
+.object-tools a {
+    border-radius: 5px;
+}
+.object-tools a:link,
+.object-tools a:visited{
+    padding: 5px 15px;
+    background: #0082ff;
+}
+.object-tools a.viewsitelink, .object-tools a.golink, .object-tools a.addlink {
+    background-image: url(../admin/img/tooltag-add.svg);
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-right: 26px;
+}
+.object-tools a:focus, .object-tools a:hover {
+    background-color: #026fd4;
+}
+div.breadcrumbs{
+    background: #0082ff;
+}
+a:link, a:visited {
+    color: #0082ff;
+    text-decoration: none;
+}
+a:focus, a:hover {
+    color: #0366c2;
+}
+h1 {
+    color: #000000;
+}
+thead th, tfoot td {
+    color: #141414;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #0082ff;
+    color: #fff;
+}
+.button.default, input[type="submit"].default, .submit-row input.default {
+    background: #026ccf;
+}
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button {
+    background: #0082ff;
+}
+.button.default:active, input[type="submit"].default:active, .button.default:focus, input[type="submit"].default:focus, .button.default:hover, input[type="submit"].default:hover {
+    background: #075299;
+}
+.button:active, input[type="submit"]:active, input[type="button"]:active, .button:focus, input[type="submit"]:focus, input[type="button"]:focus, .button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background: #026fd4;
+}
+.submit-row a.deletelink {
+    background: #ec3a3a !important;
+    padding: 10px 17px !important;
+}
+.submit-row a.deletelink:focus, .submit-row a.deletelink:hover, .submit-row a.deletelink:active {
+    background: #be2121 !important;
+}

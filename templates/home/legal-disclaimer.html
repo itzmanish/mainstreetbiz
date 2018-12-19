@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Legal Disclaimer {% endblock %}
+{% block content %}
+
+<div class="disclaimer my-5">
+    <div class="container">
+        <span class="badge bg-light my-3" style="padding: 1em 1em;">
+            Updated at {{ disclaimer.updated_at }}
+        </span>
+        {{ disclaimer.legal_disclaimer | safe }}
+    </div>
+</div>
+
+{% endblock %}

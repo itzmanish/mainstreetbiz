@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %} Sell a business {% endblock %}
+{% block content %}
+<header class="masthead-fixed-for-selling-page">
+    <div class="overlay"></div>
+</header>
+<div class="container">
+    <div class="row justify-content-center" style="margin-top: 10%;">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Want to sell your business ? </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% include 'form.html' %}
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-secondary">
+                                Send Now
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
