@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, SocialLink, Home, About, Buying
+from .models import Contact, SocialLink, Home, About, BuyingProcess
 # Register your models here.
 
 
@@ -39,7 +39,7 @@ class AboutAdmin(admin.ModelAdmin):
             return True
 
 
-class BuyingAdmin(admin.ModelAdmin):
+class BuyingProcessAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         num_objects = self.model.objects.count()
         if num_objects >= 1:
@@ -49,7 +49,7 @@ class BuyingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Home, HomeAdmin)
-admin.site.register(Buying, BuyingAdmin)
+admin.site.register(BuyingProcess, BuyingProcessAdmin)
 admin.site.register(About, AboutAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(SocialLink, SocialLinkAdmin)
