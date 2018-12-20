@@ -3,10 +3,7 @@
 {% block news_li_class %} active {% endblock %}
 {% block content %}
 
-<section id="showcase">
-    <div class="container">
-        <a href="{% url 'news:home' %}" class="btn btn-light mb-3">Back To Blog</a>
-    </div>
+<section class="pt-0" id="showcase">
     <div class="home-search p-5 text-center">
         <div class="overlay-blog p-5" style="background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{ news.image.url }})">
             <div class="container ">
