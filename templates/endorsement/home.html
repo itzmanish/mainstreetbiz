@@ -7,8 +7,8 @@
     <div class="container">
         {% for client in clients.all %}
         <div class="col-md-12 my-2">
-            <h4> {{ client.name }} </h4>
-            <h5> {{ client.business_involved_in }} </h5>
+            <h2> {{ client.name }} </h2>
+            <h4> {{ client.business_involved_in }} </h4>
             <p> location: {{ client.location }} </p>
             {{ client.comment | safe }}
         </div>
