@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% load humanize %}
-{% block title %} Buy a business {% endblock %}
+{% block title %} Buy a commercial property {% endblock %}
 {% block listing_li_class %} active {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
           vel nostrum magnam
           voluptatum tempore! Consectetur, id commodi!</p>
         <div class="search">
-          <form action="{% url 'listing:search' %}">
+          <form action="{% url 'search_commercial' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
               <div class="col-md-4 mb-3">
@@ -90,7 +90,7 @@
           </ul>
           <div class="card-body justify-content-between align-items-center">
             <div class="btn-group">
-              <a href="{% url 'listing:listing_single' list_item.slug %}">
+              <a href="{% url 'commercial_details' list_item.slug %}">
                 <button type="button" class="btn btn-sm btn-outline-secondary">More
                   Details..</button>
               </a>
@@ -102,7 +102,7 @@
       {% endfor %}
       {% else %}
       <div class="col-md-12">
-        <p>No Listing Available</p>
+        <h1 class="text-center">No Listing Available</h1>
       </div>
       {% endif %}
       <!-- Pagination -->

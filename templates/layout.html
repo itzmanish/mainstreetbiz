@@ -56,10 +56,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item {% block home_li_class %} {% endblock %} mr-3">
+                    <li class="nav-item {% block home_li_class %} {% endblock %} mr-2">
                         <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
-                    <li class="dropdown nav-item mr-3 {% block about_li_class %} {% endblock %}">
+                    <li class="dropdown nav-item mr-2 {% block about_li_class %} {% endblock %}">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'realtor:team' %}">Our Team</a></li>
@@ -67,32 +67,28 @@
 
                         </ul>
                     </li>
-                    <li class="dropdown nav-item mr-3 {% block listing_li_class %} {% endblock %}">
+                    <li class="dropdown nav-item mr-2 {% block listing_li_class %} {% endblock %}">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Buying</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'buying-process' %}">Buying Process</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listing:home' %}">Our Listing</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listing:sold' %}">Completed Deals</a></li>
+                            <li><a class="dropdown-item" href="{% url 'listing:business_listing' %}">Business Listing</a></li>
+                            <li><a class="dropdown-item" href="{% url 'commercial-listing' %}">Commercial Listing</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sold' %}">Completed Deals</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog:home' %}">Buying Blog</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item mr-3 {% block selling_li_class %} {% endblock %}">
+                    <li class="dropdown nav-item mr-2 {% block selling_li_class %} {% endblock %}">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Selling</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{% url 'contact:contact_for_sell' %}">Selling</a></li>
+                            <li><a class="dropdown-item" href="{% url 'contact:contact_for_sell' %}">Sell your business</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item mr-3">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="{% block blog_li_class %} {% endblock %} dropdown-item" href="{% url 'blog:home' %}">Blog</a></li>
-                            <li><a class="{% block documents_li_class %} {% endblock %} dropdown-item" href="{% url 'documents:downloads' %}">Downloads</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item {% block news_li_class %} {% endblock %}mr-3">
+                    <li class="{% block documents_li_class %} {% endblock %} nav-item mr-2">
+                        <a class="nav-link" href="{% url 'documents:downloads' %}">Downloads</a></li>
+                    <li class="nav-item {% block news_li_class %} {% endblock %}mr-2">
                         <a class="nav-link" href="{% url 'news:home' %}">News</a>
                     </li>
-                    <li class="nav-item {% block contact_li_class %} {% endblock %}mr-3">
+                    <li class="nav-item {% block contact_li_class %} {% endblock %}mr-2">
                         <a class="nav-link" href="{% url 'contact:contact' %}">Contact</a>
                     </li>
                 </ul>
@@ -142,7 +138,7 @@
             <ul class="foote_bottom_ul_amrc">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'listing:home' %}">Buying</a></li>
+                <li><a href="{% url 'listing:business_listing' %}">Buying</a></li>
                 <li><a href="{% url 'contact:contact_for_sell' %}">Selling</a></li>
                 <li><a href="{% url 'blog:home' %}">Blog</a></li>
                 <li><a href="{% url 'contact:contact' %}">Contact</a></li>

@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import home, legalDisclaimer, privacyPolicy, buyingProcess, about
+from listing.views import sold, commercial, single_commercial, search_commercial
 
 urlpatterns = [
     path('', home, name='index'),
@@ -25,7 +26,11 @@ urlpatterns = [
     path('privacy-policy/', privacyPolicy, name='privacy-policy'),
     path('mainstreet/', admin.site.urls),
     path('buying-process/', buyingProcess, name='buying-process'),
-    path('listings/', include('listing.urls')),
+    path('completed-deals/', sold, name='sold'),
+    path('business-listings/', include('listing.urls')),
+    path('commercial-listing/', commercial, name='commercial-listing'),
+    path('commercial-listing/search/', search_commercial, name='search_commercial'),
+    path('commercial-listing/<slug:slug>/', single_commercial, name='commercial_details'),
     path('blog/', include('blog.urls')),
     path('news/', include('news.urls')),
     path('about/', about, name='about'),

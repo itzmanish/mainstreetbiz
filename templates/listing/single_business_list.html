@@ -8,7 +8,7 @@
 <section id="listing" class="py-4">
     <div class="container">
         {% include 'partials/_alert.html' %}
-        <a href="{% url 'listing:home' %}" class="btn btn-light mb-4">Back To Listings</a>
+        <a href="{% url 'listing:business_listing' %}" class="btn btn-light mb-4">Back To Listings</a>
         <div class="row">
             <div class="col-md-9">
                 <h1>{{ property.title }}</h1>
@@ -64,68 +64,6 @@
                     </div>
                     {% endif %}
                 </div>
-                <!-- Fields -->
-                <div class="row mb-4 fields">
-                    <div class="col-md-6">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-money-bill-alt"></i> Asking Price:
-                                <span class="float-right">$490,000</span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-list-alt"></i> Listing ID:
-                                <span class="float-right">{{ property.listing_id }}</span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-shopping-cart"></i> Inventory:
-                                <span class="float-right">{{ property.inventory }}</span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-chart-bar"></i> Revenues:
-                                <span class="float-right">{{ property.revenues }}
-                                </span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-chart-bar"></i> MLS Code:
-                                <span class="float-right"> {% if property.mls_code is null %} Not Disclosed {% else %}
-                                    {{ property.mls_code }} {% endif %}
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-location-arrow"></i> Location:
-                                <span class="float-right">{{ property.city }}</span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-home"></i> Real Estate:
-                                <span class="float-right"> {% if not property.real_estates %} Not disclosed {% else %}
-                                    {{ property.real_estates_value }} {% endif %}
-                                </span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-dollar-sign"></i> Cash Flows:
-                                <span class="float-right"> {% if property.cash_flows == null %} Not disclosed
-                                    {% else %} {{ property.cash_flows }} {% endif %} </span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-couch"></i> FF&E:
-                                <span class="float-right"> {% if property.ffande == null %} Not disclosed
-                                    {% else %} {{ property.ffande }} {% endif %} </span>
-                            </li>
-                            <li class="list-group-item text-secondary p-2">
-                                <i class="fas fa-bed"></i> Realtor:
-                                <span class="float-right">{{ property.realtor.name }}
-                                </span>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                </div>
-
                 <!-- Description -->
                 <div class="row mb-5">
                     <div class="col-md-12">

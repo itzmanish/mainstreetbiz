@@ -17,7 +17,7 @@
                     vel nostrum magnam
                     voluptatum tempore! Consectetur, id commodi!</p>
                 <div class="search">
-                    <form action="{% url 'listing:business_search' %}">
+                    <form action="{% url 'search_commercial' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
@@ -73,7 +73,7 @@
 </section>
 
 
-<div class="pb-3">
+<div class=" pb-3">
     <div class="container">
         <div class="row">
             {% if list %}
@@ -96,7 +96,7 @@
                     </ul>
                     <div class="card-body justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="{% url 'listing:business_listing_single' list_item.slug %}">
+                            <a href="{% url 'commercial_details' list_item.slug %}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">More
                                     Details..</button>
                             </a>
@@ -108,7 +108,7 @@
             {% endfor %}
             {% else %}
             <div class="col-md-12">
-                <h1 class="text-center">No Listing Found. Try to modify your search</h1>
+                <h1 class="text-center">No Commercial Listing Found. Try to modify your search</h1>
             </div>
             {% endif %}
 
