@@ -31,6 +31,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    'endorsement.apps.EndorsementConfig',
     'news.apps.NewsConfig',
     'setting.apps.SettingConfig',
     'downloads.apps.DownloadsConfig',
