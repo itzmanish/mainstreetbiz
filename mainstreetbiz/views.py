@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
 from listing.models import Listing
-from setting.models import SocialLink, Home, Contact, BuyingProcess, About
+from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance
 
 
 def static_query():
-    social = SocialLink.objects.get()
-    contact = Contact.objects.get()
+    social = SocialLink.objects.filter().first()
+    contact = Contact.objects.filter().first()
     context = {
         'social': social,
         'contact': contact
@@ -15,7 +15,7 @@ def static_query():
 
 
 def home(request):
-    home = Home.objects.get()
+    home = Home.objects.filter().first()
     context = {
         'home': home,
     }
@@ -24,28 +24,35 @@ def home(request):
 
 
 def legalDisclaimer(request):
-    disclaimer = LegalDisclaimer.objects.get()
+    disclaimer = LegalDisclaimer.objects.filter().first()
     context = {'disclaimer': disclaimer}
     context.update(static_query())
     return render(request, 'home/legal-disclaimer.html', context)
 
 
 def privacyPolicy(request):
-    privacyPolicy = PrivacyPolicy.objects.get()
+    privacyPolicy = PrivacyPolicy.objects.filter().first()
     context = {'privacyPolicy': privacyPolicy}
     context.update(static_query())
     return render(request, 'home/privacy-policy.html', context)
 
 
 def buyingProcess(request):
-    buying = BuyingProcess.objects.get()
+    buying = BuyingProcess.objects.filter().first()
     context = {'buying': buying}
     context.update(static_query())
     return render(request, 'home/buying-process.html', context)
 
 
 def about(request):
-    about = About.objects.get()
+    about = About.objects.filter().first()
     context = {'about': about}
     context.update(static_query())
     return render(request, 'about/about.html', context)
+
+
+def businessFinance(request):
+    finance = BusinessFinance.objects.filter().first()
+    context = {'finance': finance}
+    context.update(static_query())
+    return render(request, 'home/business-finance.html', context)

@@ -69,3 +69,11 @@ class BuyingProcess(models.Model):
 
     def __str__(self):
         return str(self.created_at)
+
+
+class BusinessFinance(models.Model):
+    business_finance = RichTextField(config_name='default')
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.created_at)
