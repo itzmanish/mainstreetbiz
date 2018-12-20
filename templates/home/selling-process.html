@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Selling Instruction {% endblock %}
+{% block content %}
+
+<div class="disclaimer my-5">
+    <div class="container">
+        {{ selling.selling | safe }}
+    </div>
+</div>
+
+{% endblock %}

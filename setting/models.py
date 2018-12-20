@@ -1,5 +1,7 @@
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 from django.core.exceptions import ValidationError
@@ -71,8 +73,16 @@ class BuyingProcess(models.Model):
         return str(self.created_at)
 
 
+class SellingProcess(models.Model):
+    selling = RichTextUploadingField(config_name='default')
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.created_at)
+
+
 class BusinessFinance(models.Model):
-    business_finance = RichTextField(config_name='default')
+    business_finance = RichTextUploadingField(config_name='default')
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

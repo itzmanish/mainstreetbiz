@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
 from listing.models import Listing
-from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance
+from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess
 
 
 def static_query():
@@ -42,6 +42,13 @@ def buyingProcess(request):
     context = {'buying': buying}
     context.update(static_query())
     return render(request, 'home/buying-process.html', context)
+
+
+def sellingProcess(request):
+    selling = SellingProcess.objects.filter().first()
+    context = {'selling': selling}
+    context.update(static_query())
+    return render(request, 'home/selling-process.html', context)
 
 
 def about(request):

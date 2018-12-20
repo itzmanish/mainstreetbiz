@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, legalDisclaimer, privacyPolicy, buyingProcess, about, businessFinance
+from .views import home, legalDisclaimer, privacyPolicy, buyingProcess, about, businessFinance, sellingProcess
 from listing.views import sold, commercial, single_commercial, search_commercial
 
 urlpatterns = [
@@ -34,6 +34,7 @@ urlpatterns = [
     path('commercial-listing/<slug:slug>/',
          single_commercial, name='commercial_details'),
     path('small-business-finance/', businessFinance, name='business_finance'),
+    path('selling-process/', sellingProcess, name='selling_process'),
     path('blog/', include('blog.urls')),
     path('news/', include('news.urls')),
     path('about/', about, name='about'),
