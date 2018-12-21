@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Listing
-from .choices import state_choices, price_choices, businessType_choices
+from .choices import area_choices, price_choices, businessType_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
 
@@ -14,7 +15,7 @@ def business(request):
     paged_listing = paginator.get_page(page)
     context = {
         'list': paged_listing,
-        'state': state_choices,
+        'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices
     }
@@ -23,13 +24,14 @@ def business(request):
 
 
 def search_business(request):
-    queryset_list = Listing.objects.order_by('-created_at').filter(Type='business')
+    queryset_list = Listing.objects.order_by(
+        '-created_at').filter(Type='business')
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             queryset_list = queryset_list.filter(
-                description__icontains=keywords, title__icontains=keywords)
+                Q(title__icontains=keywords) | Q(description__icontains=keywords) )
 
     # for city
     if 'area' in request.GET:
@@ -58,7 +60,7 @@ def search_business(request):
                 price__lte=price)
     context = {
         'list': queryset_list,
-        'state': state_choices,
+        'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices,
         'values': request.GET
@@ -90,7 +92,7 @@ def commercial(request):
     paged_listing = paginator.get_page(page)
     context = {
         'list': paged_listing,
-        'state': state_choices,
+        'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices
     }
@@ -104,14 +106,16 @@ def single_commercial(request, slug):
     context.update(static_query())
     return render(request, 'listing/single_commercial_list.html', context)
 
+
 def search_commercial(request):
-    queryset_list = Listing.objects.order_by('-created_at').filter(Type='commercial')
+    queryset_list = Listing.objects.order_by(
+        '-created_at').filter(Type='commercial')
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             queryset_list = queryset_list.filter(
-                description__icontains=keywords, title__icontains=keywords)
+                Q(title__icontains=keywords) | Q(description__icontains=keywords))
 
     # for city
     if 'area' in request.GET:
@@ -140,7 +144,7 @@ def search_commercial(request):
                 price__lte=price)
     context = {
         'list': queryset_list,
-        'state': state_choices,
+        'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices,
         'values': request.GET

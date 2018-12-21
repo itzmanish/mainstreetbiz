@@ -20,23 +20,17 @@
                     <form action="{% url 'listing:business_search' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label class="sr-only">Keywords</label>
                                 <input type="text" value="{{ values.keywords }}" name="keywords" class="form-control"
                                     placeholder="Keyword (Pool, Garage, etc)">
                             </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label class="sr-only">City</label>
-                                <input type="text" name="area" class="form-control" placeholder="City" value="{{ values.area }}">
-                            </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label class="sr-only">State</label>
-                                <select name="state" class="form-control">
-                                    <option selected="true" disabled="disabled">State (All)</option>
-                                    {% for key, value in state.items %}
-                                    <option value="{{ key }}" {% if key == values.state %} selected {% endif %}>
+                            <div class="col-md-6 mb-3">
+                                <label class="sr-only">Area</label>
+                                <select name="area" class="form-control">
+                                    <option selected="true" disabled="disabled">Area (All)</option>
+                                    {% for key, value in area.items %}
+                                    <option value="{{ key }}" {% if key == values.area %} selected {% endif %}>
                                         {{ value }} </option>
                                     {% endfor %}
                                 </select>
