@@ -15,10 +15,10 @@ def register(request):
         business_area = request.POST['business_area']
         business_price = request.POST['business_price']
         max_cash = request.POST['max_cash']
-        remark = request.POST['remark']
+        remarks = request.POST['remarks']
 
         user = Register(first_name=first_name, last_name=last_name, email=email, phone=phone, business_type=business_type,
-                        investment_type=investment_type, business_area=business_area, business_price=business_price, max_cash=max_cash, remark=remark)
+                        investment_type=investment_type, business_area=business_area, business_price=business_price, max_cash=max_cash, remarks=remarks)
 
         user.save()
         messages.success(
