@@ -85,7 +85,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{ list_item.area }}</li>
                         <li class="list-group-item">{{ list_item.title }}</li>
-                        <li class="list-group-item">{{ list_item.summary }} </li>
+                        <li class="list-group-item">{{ list_item.summary | safe }} </li>
                         <li class="list-group-item">Listing ID : {{ list_item.listing_id }}</li>
                     </ul>
                     <div class="card-body justify-content-between align-items-center">

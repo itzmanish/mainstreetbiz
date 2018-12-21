@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .models import Listing
-from .choices import area_choices, price_choices, businessType_choices
+from .models import Listing, Area, Business_Type
+from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
+
+area_choices = {}
+businessType_choices = {}
 
 
 def business(request):
@@ -13,6 +16,20 @@ def business(request):
     paginator = Paginator(listings, 9)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
+    global area_choices
+    area_list = Area.objects.all()
+    if area_list:
+        for k in area_list:
+            area_choices[k] = k
+    else:
+        area_choices = {}
+    business_type = Business_Type.objects.all()
+    global businessType_choices
+    if business_type:
+        for k in business_type:
+            businessType_choices[k] = k
+    else:
+        businessType_choices = {}
     context = {
         'list': paged_listing,
         'area': area_choices,
@@ -31,7 +48,7 @@ def search_business(request):
         keywords = request.GET['keywords']
         if keywords:
             queryset_list = queryset_list.filter(
-                Q(title__icontains=keywords) | Q(description__icontains=keywords) )
+                Q(title__icontains=keywords) | Q(description__icontains=keywords))
 
     # for city
     if 'area' in request.GET:

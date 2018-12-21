@@ -1,4 +1,3 @@
-from .models import Business_Type, Area
 
 # state_choices = {
 #     'Alberta': 'Alberta',
@@ -16,12 +15,6 @@ from .models import Business_Type, Area
 #     'Yukon': 'Yukon',
 # }
 
-area_list = Area.objects.all()
-area_choices = {}
-for k in area_list:
-    area_choices[k] = k
-
-
 price_choices = {
     '100000': '$0-$100,000',
     '200000': '$100,001-$200,000',
@@ -36,10 +29,3 @@ price_choices = {
     '2000000': '$1M-$2M+',
     '3000000': '$2M-$3M+'
 }
-
-business_type = Business_Type.objects.all()
-
-businessType_choices = {}
-
-for k in business_type:
-    businessType_choices[k] = k
