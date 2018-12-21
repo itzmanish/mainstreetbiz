@@ -8,6 +8,7 @@
 <section class="section">
     <div class="container my-5">
         <div class="row justify-content-center">
+            {% include 'partials/_alert.html' %}
             <div class="col-lg-10 text-dark text-center">
                 <h1 class="title">{{ home.homepage_heading }}</h1>
                 <div class="subtitle">
@@ -24,7 +25,7 @@
                         <div class="mb-4">
                             {{ home.sellerbox_subtitle | safe}}
                         </div>
-			<a class="btn btn-secondary" href="{% url 'contact:contact_for_sell' %}">
+                        <a class="btn btn-secondary" href="{% url 'contact:contact_for_sell' %}">
                             Sell my Home
                             <span class="fas fa-angle-right ml-2"></span>
                         </a>
