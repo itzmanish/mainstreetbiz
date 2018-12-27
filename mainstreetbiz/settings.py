@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'import_export',
+    'admin_reorder',
+
 ]
 
 MIDDLEWARE = [
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'mainstreetbiz.urls'
@@ -249,5 +252,81 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
-
+# django-import-export start
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+# django-import expport end
+
+# django reorder apps start
+ADMIN_REORDER = (
+    # Keep original label and models
+    'sites',
+
+    # # Rename app
+    # {'app': 'auth', 'label': 'Authorisation'},
+
+    # # Reorder app models
+    # {'app': 'auth', 'models': ('auth.User', 'auth.Group')},
+
+    # # Exclude models
+    # {'app': 'auth', 'models': ('auth.User', )},
+
+    # # Cross-linked models
+    # {'app': 'auth', 'models': ('auth.User', 'sites.Site')},
+
+    # # models with custom name
+    # {'app': 'auth', 'models': (
+    #     'auth.Group',
+    #     {'model': 'auth.User', 'label': 'Staff'},
+    # )},
+    {'app': 'auth', 'models': (
+        'auth.User',
+    )},
+    {'app': 'setting', 'label': 'Site settings', 'models': (
+        {'model': 'setting.SocialLink', 'label': 'Social links'},
+        {'model': 'setting.Contact', 'label': 'Footer contact field'},
+        {'model': 'setting.Home', 'label': 'Home Page '},
+        {'model': 'setting.About', 'label': 'About Page '},
+        {'model': 'setting.BuyingProcess', 'label': 'Buying Process Page '},
+        {'model': 'setting.SellingProcess', 'label': 'Selling Process Page '},
+        {'model': 'setting.BusinessFinance',
+            'label': 'Business finance Page '},
+    )},
+    {'app': 'realtor', 'label': 'Realtors', 'models': (
+        {'model': 'realtor.Realtor', 'label': 'Realtors'},
+        {'model': 'realtor.Disclaimer', 'label': 'NDA & Disclaimer'},
+        {'model': 'realtor.LegalDisclaimer', 'label': 'Legal Disclaimer Page'},
+        {'model': 'realtor.PrivacyPolicy', 'label': 'Privacy Policy Page'},
+    )},
+    {'app': 'listing', 'label': 'Listing', 'models': (
+        {'model': 'listing.Listing', 'label': 'Listings'},
+        {'model': 'listing.Business_Type', 'label': 'Business Types'},
+        {'model': 'listing.Area', 'label': 'Area'},
+        {'model': 'listing.Status', 'label': 'Status'},
+    )},
+    {'app': 'buyersregistry', 'label': 'Buyer\'s Registry', 'models': (
+        {'model': 'buyersregistry.Register', 'label': 'Register'},
+        {'model': 'buyersregistry.BuyersInventoryPage',
+            'label': 'Buyer\'s Inventry Page'},
+    )},
+    {'app': 'blog', 'label': 'Blog', 'models': (
+        {'model': 'blog.Article', 'label': 'Articles'},
+    )},
+    {'app': 'news', 'label': 'News', 'models': (
+        {'model': 'news.News', 'label': 'News'},
+    )},
+    {'app': 'endorsement', 'label': 'Endorsements', 'models': (
+        {'model': 'endorsement.Clients', 'label': 'Client Reviews'},
+    )},
+    {'app': 'contact', 'label': 'Contact', 'models': (
+        {'model': 'contact.Contact', 'label': 'Contact Page'},
+        {'model': 'contact.ContactSelling',
+            'label': 'Contacts (Selling Page)'},
+        {'model': 'contact.ContactModel', 'label': 'Contacts (Listing Page)'},
+    )},
+    {'app': 'downloads', 'label': 'Available Downloads', 'models': (
+        {'model': 'downloads.Document', 'label': 'Documents'},
+    )},
+
+)
+
+# django reorder apps end

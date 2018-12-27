@@ -30,8 +30,8 @@ class Listing(models.Model):
     status = models.ForeignKey(
         'Status', on_delete=models.DO_NOTHING, null=False)
     is_published = models.BooleanField(default=True)
-    is_featured = models.BooleanField(default=False)
     disclaimer = models.ForeignKey(Disclaimer, on_delete=models.DO_NOTHING)
+    finance = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

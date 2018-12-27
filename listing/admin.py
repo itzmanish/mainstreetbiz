@@ -4,13 +4,15 @@ from import_export.admin import ImportExportModelAdmin
 
 
 class ListingAdmin(ImportExportModelAdmin):
+    fields = ('Type', 'status', 'title', 'listing_id', 'area', 'business_type', 'description', 'price', 'finance',
+              'image_main', 'image_1', 'image_2', 'image_3', 'image_4', 'disclaimer', 'is_published', 'slug')
     list_display = ('listing_id', 'title', 'price',
-                    'created_at', 'realtor', 'status', 'is_published', 'is_featured')
+                    'created_at', 'realtor', 'status', 'is_published',)
     list_display_links = ('title', 'listing_id', )
     prepopulated_fields = {'slug': ('title',)}
     list_filter = ('realtor', 'created_at', 'status',
-                   'is_published', 'is_featured')
-    list_editable = ('is_published', 'status', 'is_featured')
+                   'is_published',)
+    list_editable = ('is_published', 'status',)
     search_fields = ('listing_id', 'title', )
     ordering = ('listing_id',)
     list_per_page = 10

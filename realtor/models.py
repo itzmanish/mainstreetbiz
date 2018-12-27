@@ -16,13 +16,14 @@ class Realtor(models.Model):
 
 
 class Disclaimer(models.Model):
-    disclaimer = RichTextField()
+    disclaimer = RichTextField(config_name='default')
     created_by = models.ForeignKey('Realtor', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.disclaimer[:20]
+
 
 class LegalDisclaimer(models.Model):
     legal_disclaimer = RichTextField(config_name='default')
@@ -33,6 +34,7 @@ class LegalDisclaimer(models.Model):
     def __str__(self):
         return self.legal_disclaimer[:20]
 
+
 class PrivacyPolicy(models.Model):
     privacy_policy = RichTextField(config_name='default')
     created_by = models.ForeignKey('Realtor', on_delete=models.DO_NOTHING)
@@ -41,4 +43,3 @@ class PrivacyPolicy(models.Model):
 
     def __str__(self):
         return self.privacy_policy[:20]
-
