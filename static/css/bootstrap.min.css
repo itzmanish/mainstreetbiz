@@ -3371,9 +3371,10 @@ input[type=submit].btn-block {
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #134074;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, .15);
+  transition: all 1s;
+
 }
 
 .dropdown-menu-right {
@@ -3491,23 +3492,24 @@ input[type=submit].btn-block {
 }
 
 .dropdown-item {
+  margin-top: .5rem;
   display: block;
   width: 100%;
   padding: .25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #fff;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
-  border: 0
+  border: 0;
 }
 
 .dropdown-item:focus,
 .dropdown-item:hover {
   color: #16181b;
   text-decoration: none;
-  background-color: #f8f9fa
+  background-color: #f8f9fa;
 }
 
 .dropdown-item.active,

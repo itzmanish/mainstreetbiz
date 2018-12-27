@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'ckeditor',
     'ckeditor_uploader',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -248,3 +249,5 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True

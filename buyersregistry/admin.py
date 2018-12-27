@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import BuyersInventoryPage, Register
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(BuyersInventoryPage)
@@ -13,6 +14,6 @@ class BuyersInventoryPageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Register)
-class RegisterAdmin(admin.ModelAdmin):
+class RegisterAdmin(ImportExportModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'phone', 'created_at')
     list_filter = ('created_at',)
