@@ -76,7 +76,7 @@
                             <li><a class="dropdown-item" href="{% url 'business_finance' %}">Small business finance</a></li>
                             <li><a class="dropdown-item" href="{% url 'listing:business_listing' %}">Business Listing</a></li>
                             <li><a class="dropdown-item" href="{% url 'commercial-listing' %}">Commercial Listing</a></li>
-                            <li><a class="dropdown-item" href="{% url 'sold' %}">Completed Deals</a></li>
+                            <li><a class="dropdown-item" href="{% url 'completed-deals' %}">Completed Deals</a></li>
                             <li><a class="dropdown-item" href="{% url 'blog:home' %}">Buyer's Blog</a></li>
                             <li><a class="dropdown-item" href="{% url 'documents:downloads' %}">Download</a></li>
                         </ul>
@@ -85,13 +85,14 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Selling</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'selling_process' %}">Selling Process</a></li>
+                            <li><a class="dropdown-item" href="{% url 'completed-deals' %}">Completed Deals</a></li>
                             <li><a class="dropdown-item" href="{% url 'contact:contact_for_sell' %}">Sell your business</a></li>
                         </ul>
                     </li>
                     <li class="dropdown nav-item mr-2 {% block inventory_li_class %} {% endblock %}">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Buyers Inventory</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Buyers Directory</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{% url 'buyersregistry:buyers_inventory' %}">Inventory</a></li>
+                            <li><a class="dropdown-item" href="{% url 'buyersregistry:buyers_inventory' %}">Directory</a></li>
                             <li><a class="dropdown-item" href="{% url 'buyersregistry:buyers_registry' %}">Register</a></li>
                         </ul>
                     </li>

@@ -8,11 +8,11 @@ from mainstreetbiz.views import static_query
 
 area_choices = {}
 businessType_choices = {}
+listings = Listing.objects.order_by(
+    '-created_at').filter(is_published=True, Type='business', is_completed=False)
 
 
 def business(request):
-    listings = Listing.objects.order_by(
-        '-created_at').filter(is_published=True, Type='business')
     paginator = Paginator(listings, 9)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
@@ -41,8 +41,7 @@ def business(request):
 
 
 def search_business(request):
-    queryset_list = Listing.objects.order_by(
-        '-created_at').filter(Type='business')
+    queryset_list = listings
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
@@ -87,23 +86,24 @@ def search_business(request):
 
 
 def single_business(request, slug):
-    property = get_object_or_404(Listing, slug=slug)
+    property = get_object_or_404(
+        Listing, slug=slug, Type='business', is_published=True, is_completed=False)
     context = {'property': property}
     context.update(static_query())
     return render(request, 'listing/single_business_list.html', context)
 
 
-def sold(request):
+def completed(request):
     property = Listing.objects.order_by(
-        '-created_at').filter(status__status__iexact='sold')
+        '-created_at').filter(is_completed=True)
     context = {'list': property}
     context.update(static_query())
-    return render(request, 'listing/sold.html', context)
+    return render(request, 'listing/completed-deals.html', context)
 
 
 def commercial(request):
     listings = Listing.objects.order_by(
-        '-created_at').filter(is_published=True, Type='commercial')
+        '-created_at').filter(is_published=True, Type='commercial', is_completed=False)
     paginator = Paginator(listings, 9)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
@@ -118,7 +118,8 @@ def commercial(request):
 
 
 def single_commercial(request, slug):
-    property = get_object_or_404(Listing, slug=slug)
+    property = get_object_or_404(
+        Listing, slug=slug, Type='commercial', is_published=True, is_completed=False)
     context = {'property': property}
     context.update(static_query())
     return render(request, 'listing/single_commercial_list.html', context)
@@ -126,7 +127,7 @@ def single_commercial(request, slug):
 
 def search_commercial(request):
     queryset_list = Listing.objects.order_by(
-        '-created_at').filter(Type='commercial')
+        '-created_at').filter(Type='commercial', is_published=True)
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']

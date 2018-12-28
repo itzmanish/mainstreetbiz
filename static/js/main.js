@@ -24,12 +24,12 @@ $(function () {
 });
 function initMap() {
 
-    var location = new google.maps.LatLng(50.0875726, 14.4189987);
+    var location = new google.maps.LatLng(43.912242, -79.446718);
 
     var mapCanvas = document.getElementById('map');
     var mapOptions = {
         center: location,
-        zoom: 16,
+        zoom: 18,
         panControl: false,
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -45,7 +45,7 @@ function initMap() {
     });
 
     var contentString = '<div class="info-window">' +
-        '<h3>Info Window Content</h3>' +
+        '<h3>Mainstreet Buziness</h3>' +
         '<div class="info-content">' +
         '<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>' +
         '</div>' +
