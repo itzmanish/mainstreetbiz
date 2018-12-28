@@ -81,3 +81,13 @@ class Status(models.Model):
 
     def __str__(self):
         return self.status
+
+
+class FeaturedListing(models.Model):
+    title = models.CharField(max_length=50)
+    subtitle = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

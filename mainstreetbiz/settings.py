@@ -299,6 +299,7 @@ ADMIN_REORDER = (
     )},
     {'app': 'listing', 'label': 'Listing', 'models': (
         {'model': 'listing.Listing', 'label': 'Listings'},
+        {'model': 'listing.FeaturedListing', 'label': 'Featured Listing'},
         {'model': 'listing.Business_Type', 'label': 'Business Types'},
         {'model': 'listing.Area', 'label': 'Area'},
         {'model': 'listing.Status', 'label': 'Status'},

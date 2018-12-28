@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
-from listing.models import Listing
+from listing.models import Listing, FeaturedListing
 from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess
 
 
@@ -16,8 +16,11 @@ def static_query():
 
 def home(request):
     home = Home.objects.filter().first()
+    featured = FeaturedListing.objects.all()
+    print(featured)
     context = {
         'home': home,
+        'featured_item': featured
     }
     context.update(static_query())
     return render(request, 'home/home.html', context)

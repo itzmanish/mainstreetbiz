@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Listing, Business_Type, Area, Status
+from .models import Listing, Business_Type, Area, Status, FeaturedListing
 from import_export.admin import ImportExportModelAdmin
 
 
@@ -28,6 +28,19 @@ class AreaAdmin(ImportExportModelAdmin):
     list_display = ('id', 'area', 'created_at')
     prepopulated_fields = {'area_slug': ('area',)}
     search_fields = ('area', )
+
+
+@admin.register(FeaturedListing)
+class FeaturedListingAdmin(ImportExportModelAdmin):
+    list_display = ('title', 'image', 'created_at')
+    search_fields = ('title', )
+
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 3:
+            return False
+        else:
+            return True
 
 
 admin.site.register(Listing, ListingAdmin)
