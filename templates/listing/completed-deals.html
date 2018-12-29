@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} Completed Business {% endblock %}
+{% block listing_li_class %} active {% endblock %}
+
+{% block content %}
+
+<div class="my-3">
+  <div class="container">
+    <div class="row">
+      {% for list_item in list %}
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-header text-center">
+            {{ list_item.title }}
+            <br>
+            ( {{ list_item.subtitle }} )
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item no-border">Location : {{ list_item.area }}</li>
+                <li class="list-group-item no-border">Served as : {{ list_item.served_as }}</li>
+                <li class="list-group-item no-border">Completion : {{ list_item.completion }}</li>
+                <li class="list-group-item no-border">Type : {{ list_item.Type }}</li>
+              </ul>
+            </div>
+
+          </div>
+          <hr>
+          <img class="logo mx-auto mb-3" src="{% static 'img/logo.png' %}" alt="">
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock%}

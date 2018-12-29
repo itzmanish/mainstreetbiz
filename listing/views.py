@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .models import Listing, Area, Business_Type
+from .models import Listing, Area, Business_Type, CompletedDeals
 from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
@@ -9,7 +9,7 @@ from mainstreetbiz.views import static_query
 area_choices = {}
 businessType_choices = {}
 listings = Listing.objects.order_by(
-    '-created_at').filter(is_published=True, Type='business', is_completed=False)
+    '-created_at').filter(is_published=True, Type='business', )
 
 
 def business(request):
@@ -87,15 +87,15 @@ def search_business(request):
 
 def single_business(request, slug):
     property = get_object_or_404(
-        Listing, slug=slug, Type='business', is_published=True, is_completed=False)
+        Listing, slug=slug, Type='business', is_published=True,)
     context = {'property': property}
     context.update(static_query())
     return render(request, 'listing/single_business_list.html', context)
 
 
 def completed(request):
-    property = Listing.objects.order_by(
-        '-created_at').filter(is_completed=True)
+    property = CompletedDeals.objects.order_by(
+        '-completion')
     context = {'list': property}
     context.update(static_query())
     return render(request, 'listing/completed-deals.html', context)
@@ -103,7 +103,7 @@ def completed(request):
 
 def commercial(request):
     listings = Listing.objects.order_by(
-        '-created_at').filter(is_published=True, Type='commercial', is_completed=False)
+        '-created_at').filter(is_published=True, Type='commercial',)
     paginator = Paginator(listings, 9)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
@@ -119,7 +119,7 @@ def commercial(request):
 
 def single_commercial(request, slug):
     property = get_object_or_404(
-        Listing, slug=slug, Type='commercial', is_published=True, is_completed=False)
+        Listing, slug=slug, Type='commercial', is_published=True, )
     context = {'property': property}
     context.update(static_query())
     return render(request, 'listing/single_commercial_list.html', context)

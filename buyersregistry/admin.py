@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import BuyersInventoryPage, Register
+from .models import BuyersDirectoryPage, Register
 from import_export.admin import ImportExportModelAdmin
 
 
-@admin.register(BuyersInventoryPage)
-class BuyersInventoryPageAdmin(admin.ModelAdmin):
+@admin.register(BuyersDirectoryPage)
+class BuyersDirectoryPageAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         num_objects = self.model.objects.count()
         if num_objects >= 1:

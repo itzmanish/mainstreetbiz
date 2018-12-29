@@ -530,6 +530,13 @@
    color: #CCC;
  }
 
+ .no-border{
+   border: 0 !important;
+ }
+
+ .border-bottom{
+   border-bottom: 1px solid #000000
+ }
  /* caraousel */
 
  .carousel-inner {

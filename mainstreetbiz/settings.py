@@ -243,6 +243,7 @@ CKEDITOR_CONFIGS = {
             'lightbox',
             'slideshow',
             'youtube',
+            'image2'
         ]),
     }
 }
@@ -299,6 +300,7 @@ ADMIN_REORDER = (
     )},
     {'app': 'listing', 'label': 'Listing', 'models': (
         {'model': 'listing.Listing', 'label': 'Listings'},
+        {'model': 'listing.CompletedDeals', 'label': 'Completed Deals'},
         {'model': 'listing.FeaturedListing', 'label': 'Featured Listing'},
         {'model': 'listing.Business_Type', 'label': 'Business Types'},
         {'model': 'listing.Area', 'label': 'Area'},
@@ -306,8 +308,8 @@ ADMIN_REORDER = (
     )},
     {'app': 'buyersregistry', 'label': 'Buyer\'s Registry', 'models': (
         {'model': 'buyersregistry.Register', 'label': 'Register'},
-        {'model': 'buyersregistry.BuyersInventoryPage',
-            'label': 'Buyer\'s Inventry Page'},
+        {'model': 'buyersregistry.BuyersDirectoryPage',
+            'label': 'Buyer\'s Directory Page'},
     )},
     {'app': 'blog', 'label': 'Blog', 'models': (
         {'model': 'blog.Article', 'label': 'Articles'},

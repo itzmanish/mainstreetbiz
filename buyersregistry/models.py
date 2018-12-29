@@ -19,8 +19,8 @@ class Register(models.Model):
         return self.first_name + self.last_name
 
 
-class BuyersInventoryPage(models.Model):
-    buyers_iniventory_page = RichTextUploadingField()
+class BuyersDirectoryPage(models.Model):
+    buyers_directory_page = RichTextUploadingField()
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

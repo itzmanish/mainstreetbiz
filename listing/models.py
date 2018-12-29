@@ -31,7 +31,6 @@ class Listing(models.Model):
         'Status', on_delete=models.DO_NOTHING, null=False)
     is_published = models.BooleanField(default=True)
     is_sold = models.BooleanField(default=False)
-    is_completed = models.BooleanField(default=False)
     disclaimer = models.ForeignKey(Disclaimer, on_delete=models.DO_NOTHING)
     finance = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now=True)
@@ -93,3 +92,23 @@ class FeaturedListing(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CompletedDeals(models.Model):
+    CHOICE = (('commercial', 'commercial'),
+              ('business', 'business'))
+    Type = models.CharField(max_length=20, default='business', choices=CHOICE)
+    area = models.ForeignKey('Area', on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(unique=True, max_length=500)
+    subtitle = models.CharField(max_length=50)
+    served_as = models.CharField(max_length=50)
+    completion = models.DateField()
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+            # Newly created object, so set slug
+        self.slug = slugify(self.title)
+        super(CompletedDeals, self).save(*args, **kwargs)

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
 from listing.models import Listing, FeaturedListing
 from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess
+from news.models import News
+from django.db.models import Count
 
 
 def static_query():
@@ -17,10 +19,12 @@ def static_query():
 def home(request):
     home = Home.objects.filter().first()
     featured = FeaturedListing.objects.all()
-    print(featured)
+    news = News.objects.order_by(
+        '-created_At').annotate(Count('title'))[:3]
     context = {
         'home': home,
-        'featured_item': featured
+        'featured_item': featured,
+        'latest_news': news
     }
     context.update(static_query())
     return render(request, 'home/home.html', context)

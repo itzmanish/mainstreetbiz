@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from mainstreetbiz.views import static_query
-from .models import Register, BuyersInventoryPage
+from .models import Register, BuyersDirectoryPage
 from django.contrib import messages
 
 
@@ -29,7 +29,7 @@ def register(request):
 
 
 def inventory(request):
-    buyers_inventory = BuyersInventoryPage.objects.filter().first()
-    context = {'inventory': buyers_inventory}
+    buyers_directory = BuyersDirectoryPage.objects.filter().first()
+    context = {'directory': buyers_directory}
     context.update(static_query())
     return render(request, 'buyersregistry/home.html', context)
