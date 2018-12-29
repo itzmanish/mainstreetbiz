@@ -189,7 +189,7 @@ CKEDITOR_CONFIGS = {
             #    'HiddenField']},
             '/',
             {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat', 'Lineheight']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
@@ -243,7 +243,8 @@ CKEDITOR_CONFIGS = {
             'lightbox',
             'slideshow',
             'youtube',
-            'image2'
+            'image2',
+            'lineheight'
         ]),
     }
 }
