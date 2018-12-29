@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-		{% if articles %}
+            {% if articles %}
             {% for article in articles %}
             <div class="post-preview">
                 <a href="{% url 'blog:details' slug=article.slug %}">
@@ -23,11 +23,11 @@
             </div>
             <hr>
             {% endfor %}
-	    {% else %}
-      <div class="m-auto col-md-12">
-        <p>No Blog Available</p>
-      </div>
-      {% endif %}
+            {% else %}
+            <div class="m-auto col-md-12">
+                <p>No Blog Post Available</p>
+            </div>
+            {% endif %}
             <!-- Pager -->
             <div class="clearfix">
                 {% if articles.has_previous %}
