@@ -15,7 +15,14 @@
                 <h1>{{ property.title }}</h1>
                 <div class="overlay bg-transparent">
                     <h2>
-                        <span class="badge badge-success text-white">Status: {{ property.status }} </span>
+                        <span class="badge
+                        {% if property.status == 'sold' %}
+                        badge-danger
+                         {% else %}
+                        badge-success
+                        {% endif %}
+                         text-white">Status:
+                            {{ property.status }} </span>
                     </h2>
                     <!-- Home Main Image -->
                     <img src="{{ property.image_main.url }}" alt="" class="img-main img-fluid mb-3">
