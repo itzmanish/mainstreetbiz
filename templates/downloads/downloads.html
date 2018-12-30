@@ -21,7 +21,7 @@
                         <div class="card-body justify-content-between align-items-center">
                             <div class="btn-group">
                                 {% if doc.allow_download %}
-                                <a href="{{ doc.document }}">
+                                <a href="{{ doc.document.url }}">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Download</button>
                                 </a>
                                 {% else %}
