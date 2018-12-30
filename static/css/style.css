@@ -351,22 +351,22 @@
  }
 
  .btn-secondary {
-   background: #e54b4b !important;
-   border: 1px solid #e54b4b !important;
+   background: #ff5745 !important;
+   border: 1px solid #ff5745 !important;
  }
 
  .btn-secondary:hover,
  .btn-secondary:active {
-   color: #e54b4b !important;
+   color: #ff5745 !important;
    background: rgba(0, 0, 0, 0) !important;
-   border: 1px solid #e54b4b !important;
+   border: 1px solid #ff5745 !important;
  }
 
  .badge-sold {
    margin-top: 0%;
    float: right;
-   color: #e54b4b;
-   background-color: #e54b4b;
+   color: #ff5745;
+   background-color: #ff5745;
  }
 
  .text-bold {
@@ -556,7 +556,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #e54b4b;
+    background: #ff5745;
     /* background: rgba(0, 0, 0, 0.7); */
     width: 50px;
     height: 50px;
