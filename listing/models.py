@@ -13,15 +13,15 @@ class Listing(models.Model):
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=300)
     slug = models.SlugField(unique=True, max_length=500)
-    image_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    image_main = models.ImageField(upload_to='photos/')
     image_1 = models.ImageField(
-        upload_to='photos/%Y/%m/%d/', blank=True)
+        upload_to='photos/', blank=True)
     image_2 = models.ImageField(
-        upload_to='photos/%Y/%m/%d/', blank=True)
+        upload_to='photos/', blank=True)
     image_3 = models.ImageField(
-        upload_to='photos/%Y/%m/%d/', blank=True)
+        upload_to='photos/', blank=True)
     image_4 = models.ImageField(
-        upload_to='photos/%Y/%m/%d/', blank=True)
+        upload_to='photos/', blank=True)
     area = models.ForeignKey('Area', on_delete=models.DO_NOTHING, null=True)
     business_type = models.ForeignKey(
         'Business_Type', on_delete=models.DO_NOTHING, null=True)
