@@ -9,7 +9,7 @@ class News(models.Model):
     subtitle = models.CharField(max_length=500, blank=True)
     slug = models.SlugField(unique=True, max_length=500)
     content = RichTextUploadingField(config_name='default')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/news/')
     created_At = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -25,3 +25,16 @@ class News(models.Model):
             # Newly created object, so set slug
         self.slug = slugify(self.title)
         super(News, self).save(*args, **kwargs)
+
+
+class ImageUpload(models.Model):
+    title = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class ImageUploadFile(models.Model):
+    image = models.FileField(upload_to='images/news/', null=True)
+    title = models.ForeignKey(
+        'ImageUpload', on_delete=models.SET_NULL, null=True)

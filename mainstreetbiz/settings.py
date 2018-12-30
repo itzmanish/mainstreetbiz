@@ -168,7 +168,7 @@ EMAIL_SUBJECT_PREFIX = '[Django Maharudra] '
 
 # CK Editor settings
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = "images/"
+CKEDITOR_UPLOAD_PATH = "images/editor/"
 FILE_UPLOAD_PERMISSIONS = 0o644
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 CKEDITOR_CONFIGS = {
@@ -308,6 +308,7 @@ ADMIN_REORDER = (
         {'model': 'listing.Business_Type', 'label': 'Business Types'},
         {'model': 'listing.Area', 'label': 'Area'},
         {'model': 'listing.Status', 'label': 'Status'},
+        {'model': 'listing.ImageUpload', 'label': 'Image upload'}
     )},
     {'app': 'buyersregistry', 'label': 'Buyer\'s Registry', 'models': (
         {'model': 'buyersregistry.Register', 'label': 'Register'},
@@ -316,9 +317,11 @@ ADMIN_REORDER = (
     )},
     {'app': 'blog', 'label': 'Blog', 'models': (
         {'model': 'blog.Article', 'label': 'Articles'},
+        {'model': 'blog.ImageUpload', 'label': 'Image upload'},
     )},
     {'app': 'news', 'label': 'News', 'models': (
         {'model': 'news.News', 'label': 'News'},
+        {'model': 'news.ImageUpload', 'label': 'Image upload'}
     )},
     {'app': 'endorsement', 'label': 'Endorsements', 'models': (
         {'model': 'endorsement.Clients', 'label': 'Client Reviews'},
@@ -331,6 +334,7 @@ ADMIN_REORDER = (
     )},
     {'app': 'downloads', 'label': 'Available Downloads', 'models': (
         {'model': 'downloads.Document', 'label': 'Documents'},
+        {'model': 'downloads.FileUpload', 'label': 'File upload'}
     )},
 
 )

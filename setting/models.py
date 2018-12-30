@@ -71,7 +71,7 @@ class About(models.Model):
 
 
 class BuyingProcess(models.Model):
-    buying = RichTextField(config_name='default')
+    buying = RichTextUploadingField(config_name='default')
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

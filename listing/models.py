@@ -1,7 +1,9 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from realtor.models import Realtor, Disclaimer
+from django import forms
+
 # Create your models here.
 
 
@@ -13,19 +15,19 @@ class Listing(models.Model):
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=300)
     slug = models.SlugField(unique=True, max_length=500)
-    image_main = models.ImageField(upload_to='photos/')
+    image_main = models.ImageField(upload_to='images/listings/')
     image_1 = models.ImageField(
-        upload_to='photos/', blank=True)
+        upload_to='images/listings/', blank=True)
     image_2 = models.ImageField(
-        upload_to='photos/', blank=True)
+        upload_to='images/listings/', blank=True)
     image_3 = models.ImageField(
-        upload_to='photos/', blank=True)
+        upload_to='images/listings/', blank=True)
     image_4 = models.ImageField(
-        upload_to='photos/', blank=True)
+        upload_to='images/listings/', blank=True)
     area = models.ForeignKey('Area', on_delete=models.DO_NOTHING, null=True)
     business_type = models.ForeignKey(
         'Business_Type', on_delete=models.DO_NOTHING, null=True)
-    description = RichTextField(config_name='default')
+    description = RichTextUploadingField(config_name='default')
     price = models.IntegerField()
     status = models.ForeignKey(
         'Status', on_delete=models.DO_NOTHING, null=False)
@@ -87,7 +89,7 @@ class Status(models.Model):
 class FeaturedListing(models.Model):
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
+    image = models.ImageField(upload_to='images/featured_image/')
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -112,3 +114,16 @@ class CompletedDeals(models.Model):
             # Newly created object, so set slug
         self.slug = slugify(self.title)
         super(CompletedDeals, self).save(*args, **kwargs)
+
+
+class ImageUpload(models.Model):
+    title = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class ImageUploadFile(models.Model):
+    image = models.FileField(upload_to='images/listings/', null=True)
+    title = models.ForeignKey(
+        'ImageUpload', on_delete=models.SET_NULL, null=True)

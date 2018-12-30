@@ -1,12 +1,12 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
 class Realtor(models.Model):
     name = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='realtors/')
-    description = RichTextField(blank=True)
+    description = RichTextUploadingField(blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     joined_at = models.DateTimeField(auto_now=True)
@@ -16,7 +16,7 @@ class Realtor(models.Model):
 
 
 class Disclaimer(models.Model):
-    disclaimer = RichTextField(config_name='default')
+    disclaimer = RichTextUploadingField(config_name='default')
     created_by = models.ForeignKey('Realtor', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -26,7 +26,7 @@ class Disclaimer(models.Model):
 
 
 class LegalDisclaimer(models.Model):
-    legal_disclaimer = RichTextField(config_name='default')
+    legal_disclaimer = RichTextUploadingField(config_name='default')
     created_by = models.ForeignKey('Realtor', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -36,7 +36,7 @@ class LegalDisclaimer(models.Model):
 
 
 class PrivacyPolicy(models.Model):
-    privacy_policy = RichTextField(config_name='default')
+    privacy_policy = RichTextUploadingField(config_name='default')
     created_by = models.ForeignKey('Realtor', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)

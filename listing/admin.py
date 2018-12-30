@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Listing, Business_Type, Area, Status, FeaturedListing, CompletedDeals
+from .models import Listing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile
 from import_export.admin import ImportExportModelAdmin
 
 
@@ -49,6 +49,15 @@ class CompletedDealsAdmin(ImportExportModelAdmin):
               'subtitle', 'served_as', 'completion')
     list_display = ('title', 'area', 'Type', 'completion')
     search_fields = ('title',)
+
+
+class UploadImageFileInline(admin.TabularInline):
+    model = ImageUploadFile
+
+
+@admin.register(ImageUpload)
+class UploadImageAdmin(admin.ModelAdmin):
+    inlines = [UploadImageFileInline, ]
 
 
 admin.site.register(Listing, ListingAdmin)
