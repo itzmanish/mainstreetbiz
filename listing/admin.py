@@ -6,7 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 class ListingAdmin(ImportExportModelAdmin):
     fields = ('Type', 'realtor', 'status', 'title', 'listing_id', 'area', 'business_type', 'description', 'price', 'finance',
               'image_main', 'image_1', 'image_2', 'image_3', 'image_4', 'disclaimer', 'is_published', 'is_sold', 'slug')
-    list_display = ('listing_id', 'title', 'price', 'is_sold',
+    list_display = ('id', 'title', 'listing_id', 'price', 'is_sold',
                     'created_at', 'realtor', 'status', 'is_published',)
     list_display_links = ('title', 'listing_id', )
     prepopulated_fields = {'slug': ('title',)}
@@ -19,13 +19,15 @@ class ListingAdmin(ImportExportModelAdmin):
 
 
 class Business_TypeAdmin(ImportExportModelAdmin):
-    list_display = ('business_type', 'business_type_slug', )
+    list_display = ('id', 'business_type', 'business_type_slug', )
+    list_display_links = ('business_type',)
     prepopulated_fields = {'business_type_slug': ('business_type',)}
     search_fields = ('business_type', )
 
 
 class AreaAdmin(ImportExportModelAdmin):
     list_display = ('id', 'area', 'created_at')
+    list_display_links = ('area',)
     prepopulated_fields = {'area_slug': ('area',)}
     search_fields = ('area', )
 
@@ -47,7 +49,8 @@ class FeaturedListingAdmin(ImportExportModelAdmin):
 class CompletedDealsAdmin(ImportExportModelAdmin):
     fields = ('Type', 'title', 'area',
               'subtitle', 'served_as', 'completion')
-    list_display = ('title', 'area', 'Type', 'completion')
+    list_display = ('id', 'title', 'area', 'Type', 'completion')
+    list_display_links = ('title',)
     search_fields = ('title',)
 
 

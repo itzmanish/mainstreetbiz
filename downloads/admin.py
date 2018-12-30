@@ -3,7 +3,8 @@ from .models import Document, FileUpload, DocumentUpload
 
 
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'uploaded_at')
+    list_display = ('id', 'title', 'uploaded_at')
+    list_display_links = ('title',)
     list_filter = ('uploaded_at',)
 
 

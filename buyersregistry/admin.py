@@ -15,5 +15,7 @@ class BuyersDirectoryPageAdmin(admin.ModelAdmin):
 
 @admin.register(Register)
 class RegisterAdmin(ImportExportModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'phone', 'created_at')
+    list_display = ('id', 'first_name', 'last_name',
+                    'email', 'phone', 'created_at')
+    list_display_links = ('first_name',)
     list_filter = ('created_at',)
