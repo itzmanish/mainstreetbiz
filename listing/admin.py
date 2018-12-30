@@ -63,7 +63,12 @@ class UploadImageAdmin(admin.ModelAdmin):
     inlines = [UploadImageFileInline, ]
 
 
+@admin.register(Status)
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ('id', 'status', 'created_at')
+    list_display_links = ('status',)
+
+
 admin.site.register(Listing, ListingAdmin)
 admin.site.register(Business_Type, Business_TypeAdmin)
 admin.site.register(Area, AreaAdmin)
-admin.site.register(Status)
