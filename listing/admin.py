@@ -4,7 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 
 
 class ListingAdmin(ImportExportModelAdmin):
-    fields = ('Type', 'status', 'title', 'listing_id', 'area', 'business_type', 'description', 'price', 'finance',
+    fields = ('Type', 'realtor', 'status', 'title', 'listing_id', 'area', 'business_type', 'description', 'price', 'finance',
               'image_main', 'image_1', 'image_2', 'image_3', 'image_4', 'disclaimer', 'is_published', 'is_sold', 'slug')
     list_display = ('listing_id', 'title', 'price', 'is_sold',
                     'created_at', 'realtor', 'status', 'is_published',)
