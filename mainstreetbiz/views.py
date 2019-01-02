@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
-from listing.models import Listing, FeaturedListing
+from listing.models import BusinessListing, FeaturedListing
 from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess
 from news.models import News
 from django.db.models import Count

@@ -62,29 +62,29 @@
 </section>
 
 
-<div class=" pb-3">
+<div class="py-5">
   <div class="container">
     <div class="row">
       {% if list %}
       {% for list_item in list %}
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
+      <div class="col-md-3">
+        <div class="card mb-3 shadow-sm">
           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-            alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ list_item.image_main.url }}" />
+            alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="" />
           <div class="card-img-overlay">
             <h2>
               <span class="badge badge-primary text-dark">${{ list_item.price | intcomma }}</span>
             </h2>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ list_item.area }}</li>
-            <li class="list-group-item">{{ list_item.title }}</li>
+            <li class="list-group-item">{{ list_item.location }}</li>
+            <li class="list-group-item">{{ list_item.business }}</li>
             <li class="list-group-item">{{ list_item.summary | safe }} </li>
             <li class="list-group-item">Listing ID : {{ list_item.listing_id }}</li>
           </ul>
           <div class="card-body justify-content-between align-items-center">
             <div class="btn-group">
-              <a href="{% url 'listing:business_listing_single' list_item.slug %}">
+              <a href="{% url 'listing:business_listing_single' list_item.listing_id %}">
                 <button type="button" class="btn btn-sm btn-outline-secondary">More
                   Details..</button>
               </a>

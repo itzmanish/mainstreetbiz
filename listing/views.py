@@ -1,19 +1,18 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .models import Listing, Area, Business_Type, CompletedDeals
+from .models import BusinessListing, Area, Business_Type, CompletedDeals
 from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
 
 area_choices = {}
 businessType_choices = {}
-listings = Listing.objects.order_by(
-    '-created_at').filter(is_published=True, Type='business', )
+listings = BusinessListing.objects.order_by('-created_at')
 
 
 def business(request):
-    paginator = Paginator(listings, 9)
+    paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
     global area_choices
@@ -85,9 +84,8 @@ def search_business(request):
     return render(request, 'listing/search.html', context)
 
 
-def single_business(request, slug):
-    property = get_object_or_404(
-        Listing, slug=slug, Type='business', is_published=True,)
+def single_business(request, listing_id):
+    property = get_object_or_404(BusinessListing, listing_id=listing_id,)
     context = {'property': property}
     context.update(static_query())
     return render(request, 'listing/single_business_list.html', context)

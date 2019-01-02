@@ -1,19 +1,17 @@
 from django.contrib import admin
-from .models import Listing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile
-from import_export.admin import ImportExportModelAdmin
+from .models import BusinessListing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 
 
-class ListingAdmin(ImportExportModelAdmin):
-    fields = ('Type', 'realtor', 'status', 'title', 'listing_id', 'area', 'business_type', 'description', 'price', 'finance',
-              'image_main', 'image_1', 'image_2', 'image_3', 'image_4', 'disclaimer', 'is_published', 'is_sold', 'slug')
-    list_display = ('id', 'title', 'listing_id', 'price', 'is_sold',
-                    'created_at', 'realtor', 'status', 'is_published',)
-    list_display_links = ('title', 'listing_id', )
-    prepopulated_fields = {'slug': ('title',)}
-    list_filter = ('realtor', 'created_at', 'status', 'is_sold',
-                   'is_published',)
-    list_editable = ('is_published', 'is_sold', )
-    search_fields = ('listing_id', 'title', )
+@admin.register(BusinessListing)
+class BusinessListingAdmin(ImportExportActionModelAdmin):
+    list_display = ('id', 'business', 'listing_id', 'asking_price',
+                    'created_at', 'status', )
+    list_display_links = ('business', 'listing_id', )
+    # prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('created_at', 'status',)
+    # list_editable = ('is_published', 'is_sold', )
+    search_fields = ('listing_id', 'business', )
     ordering = ('listing_id',)
     list_per_page = 10
 
@@ -69,6 +67,5 @@ class StatusAdmin(admin.ModelAdmin):
     list_display_links = ('status',)
 
 
-admin.site.register(Listing, ListingAdmin)
 admin.site.register(Business_Type, Business_TypeAdmin)
 admin.site.register(Area, AreaAdmin)

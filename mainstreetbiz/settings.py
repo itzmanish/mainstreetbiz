@@ -302,7 +302,7 @@ ADMIN_REORDER = (
         {'model': 'realtor.PrivacyPolicy', 'label': 'Privacy Policy Page'},
     )},
     {'app': 'listing', 'label': 'Listing', 'models': (
-        {'model': 'listing.Listing', 'label': 'Listings'},
+        {'model': 'listing.BusinessListing', 'label': 'Business Listings'},
         {'model': 'listing.CompletedDeals', 'label': 'Completed Deals'},
         {'model': 'listing.FeaturedListing', 'label': 'Featured Listing'},
         {'model': 'listing.Business_Type', 'label': 'Business Types'},
