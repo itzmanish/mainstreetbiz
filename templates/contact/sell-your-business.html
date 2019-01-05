@@ -7,22 +7,15 @@
     <div class="row">
         <div class="mx-auto col-md-8">
             <div class="well well-sm">
-                <form class="form-horizontal" action="{% url 'contact:contact_for_sell' %}" method="post">
+                <form class="form-horizontal" action="{% url 'sellingPage' %}" method="post">
                     {% csrf_token %}
                     <fieldset>
                         <h2 class="text-center my-4">
-                            Looking To Sell Your Business?
+                            {{ sellingpage.title | safe }}
                         </h2>
-                        <p class="text-center mb-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet lacinia dolor, sed
-                            mollis massa auctor sed. Duis blandit augue nulla, eget lacinia turpis convallis a.
-                            Suspendisse vulputate eros nec ante iaculis, at convallis odio sollicitudin. Aenean mattis
-                            sem nec magna imperdiet, dignissim dapibus nulla blandit. Donec consectetur ultrices mi vel
-                            varius. Aenean pellentesque tellus a dolor aliquet, imperdiet pharetra mauris sollicitudin.
-                            Suspendisse sagittis nisl ac interdum scelerisque. In consectetur nisl non elit gravid
-                            <br>
-                            Getting started is simple. Fill out our form below.
-                        </p>
+                        <div class="mb-4">
+                            {{ sellingpage.subtitle | safe }}
+                        </div>
                         {% include 'partials/_alert.html' %}
                         <div class="form-group">
                             <div class="col-md-12">

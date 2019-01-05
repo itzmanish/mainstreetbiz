@@ -11,6 +11,7 @@ from django import forms
 class BusinessListing(models.Model):
     status = models.CharField(max_length=100)
     business = models.CharField(max_length=200)
+    business_type = models.CharField(max_length=200, blank=True, null=True)
     listing_id = models.IntegerField()
     location = models.CharField(max_length=100)
     description = models.TextField()
@@ -33,6 +34,32 @@ class BusinessListing(models.Model):
     def summary(self):
         return self.description[:50] + '...'
 
+
+class CommercialListing(models.Model):
+    status = models.CharField(max_length=100)
+    business = models.CharField(max_length=200)
+    business_type = models.CharField(max_length=200, blank=True, null=True)
+    listing_id = models.IntegerField()
+    location = models.CharField(max_length=100)
+    description = models.TextField()
+    financing_price = models.IntegerField()
+    asking_price = models.IntegerField()
+    image_main = models.ImageField(upload_to='images/listings/', blank=True)
+    image_1 = models.ImageField(
+        upload_to='images/listings/', blank=True)
+    image_2 = models.ImageField(
+        upload_to='images/listings/', blank=True)
+    image_3 = models.ImageField(
+        upload_to='images/listings/', blank=True)
+    image_4 = models.ImageField(
+        upload_to='images/listings/', blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.business
+
+    def summary(self):
+        return self.description[:50] + '...'
 # class Listing(models.Model):
 #     CHOICE = (('commercial', 'commercial'),
 #               ('business', 'business'))

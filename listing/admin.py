@@ -1,10 +1,23 @@
 from django.contrib import admin
-from .models import BusinessListing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile
+from .models import BusinessListing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile, CommercialListing
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 
 
 @admin.register(BusinessListing)
 class BusinessListingAdmin(ImportExportActionModelAdmin):
+    list_display = ('id', 'business', 'listing_id', 'asking_price',
+                    'created_at', 'status', )
+    list_display_links = ('business', 'listing_id', )
+    # prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('created_at', 'status',)
+    # list_editable = ('is_published', 'is_sold', )
+    search_fields = ('listing_id', 'business', )
+    ordering = ('listing_id',)
+    list_per_page = 10
+
+
+@admin.register(CommercialListing)
+class CommercialListingAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'business', 'listing_id', 'asking_price',
                     'created_at', 'status', )
     list_display_links = ('business', 'listing_id', )

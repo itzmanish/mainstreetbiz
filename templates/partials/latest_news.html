@@ -6,7 +6,7 @@
                 {% if latest_news %}
                 {% for news in latest_news.all %}
                 <div class="post-preview">
-                    <a href="">
+                    <a href="{% url 'news:details' slug=news.slug %}">
                         <h2 class="post-title">
                             {{ news.title.title }}
                         </h2>

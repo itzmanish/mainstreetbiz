@@ -92,3 +92,11 @@ class BusinessFinance(models.Model):
 
     def __str__(self):
         return str(self.created_at)
+
+
+class SellYourBusiness(models.Model):
+    title = models.CharField(max_length=50)
+    subtitle = RichTextField(config_name='default')
+
+    def __str__(self):
+        return self.title

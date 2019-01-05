@@ -1,10 +1,3 @@
-{% extends 'layout.html' %}
-{% block title %} Search {% endblock %}
-{% block listing_li_class %} active {% endblock %}
-{% load static %}
-{% load humanize %}
-
-{% block content %}
 <section id="showcase">
     <div class="container text-center">
         <div class="home-search p-5">
@@ -17,7 +10,7 @@
                     vel nostrum magnam
                     voluptatum tempore! Consectetur, id commodi!</p>
                 <div class="search">
-                    <form action="{{ url }}"> //need to work here
+                    <form action="{{ form_action_url }}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
@@ -25,13 +18,12 @@
                                 <input type="text" value="{{ values.keywords }}" name="keywords" class="form-control"
                                     placeholder="Keyword (Pool, Garage, etc)">
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <label class="sr-only">Area</label>
                                 <select name="area" class="form-control">
                                     <option selected="true" disabled="disabled">Area (All)</option>
                                     {% for key, value in area.items %}
-                                    <option value="{{ key }}" {% if key==values.area %} selected {% endif %}>
+                                    <option value="{{ key }}" {% if key == values.area %} selected {% endif %}>
                                         {{ value }} </option>
                                     {% endfor %}
                                 </select>
@@ -44,7 +36,7 @@
                                 <select name="business_type" class="form-control">
                                     <option selected="true" disabled="disabled">Business Type</option>
                                     {% for k, v in business_type_choice.items %}
-                                    <option value="{{k}}" {% if k==values.business_type %} selected {% endif %}>
+                                    <option value="{{k}}" {% if k == values.business_type %} selected {% endif %}>
                                         {{v}} </option>
                                     {% endfor %}
                                 </select>
@@ -53,7 +45,7 @@
                                 <select name="price" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Price (Any)</option>
                                     {% for k,v in price.items %}
-                                    <option value="{{k}}" {% if k==values.price %} selected {% endif %}>
+                                    <option value="{{k}}" {% if k == values.price %} selected {% endif %}>
                                         {{v}} </option>
                                     {% endfor %}
                                 </select>
@@ -66,50 +58,3 @@
         </div>
     </div>
 </section>
-
-
-<div class=" pb-3">
-    <div class="container">
-        <div class="row">
-            {% if list %}
-            {% for list_item in list %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ list_item.image_main.url }}" />
-                    <div class="card-img-overlay">
-                        <h2>
-                            <span class="badge badge-primary text-dark">${{ list_item.price | intcomma }}</span>
-                        </h2>
-
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ list_item.area }}</li>
-                        <li class="list-group-item">{{ list_item.title }}</li>
-                        <li class="list-group-item">{{ list_item.summary | safe }} </li>
-                        <li class="list-group-item">Listing ID : {{ list_item.listing_id }}</li>
-                    </ul>
-                    <div class="card-body justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="{% url 'commercial_details' list_item.slug %}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">More
-                                    Details..</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {% endfor %}
-            {% else %}
-            <div class="col-md-12">
-                <h1 class="text-center">No Commercial Listing Found. Try to modify your search</h1>
-            </div>
-            {% endif %}
-
-        </div>
-    </div>
-</div>
-
-
-{% endblock%}

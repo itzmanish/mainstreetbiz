@@ -292,6 +292,7 @@ ADMIN_REORDER = (
         {'model': 'setting.About', 'label': 'About Page '},
         {'model': 'setting.BuyingProcess', 'label': 'Buying Process Page '},
         {'model': 'setting.SellingProcess', 'label': 'Selling Process Page '},
+        {'model': 'setting.SellYourBusiness', 'label': 'Sell your business Page '},
         {'model': 'setting.BusinessFinance',
             'label': 'Business finance Page '},
     )},
@@ -303,6 +304,7 @@ ADMIN_REORDER = (
     )},
     {'app': 'listing', 'label': 'Listing', 'models': (
         {'model': 'listing.BusinessListing', 'label': 'Business Listings'},
+        {'model': 'listing.CommercialListing', 'label': 'Commercial Listings'},
         {'model': 'listing.CompletedDeals', 'label': 'Completed Deals'},
         {'model': 'listing.FeaturedListing', 'label': 'Featured Listing'},
         {'model': 'listing.Business_Type', 'label': 'Business Types'},

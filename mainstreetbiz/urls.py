@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import home, legalDisclaimer, privacyPolicy, buyingProcess, about, businessFinance, sellingProcess
 from listing.views import commercial, single_commercial, search_commercial, completed
+from contact.views import contactSelling
 
 urlpatterns = [
     path('', home, name='index'),
@@ -28,13 +29,14 @@ urlpatterns = [
     path('buying-process/', buyingProcess, name='buying-process'),
     path('completed-deals/', completed, name='completed-deals'),
     path('business-listings/', include('listing.urls')),
-    path('commercial-listing/', commercial, name='commercial-listing'),
-    path('commercial-listing/search/',
+    path('commercial-listings/', commercial, name='commercial-listing'),
+    path('commercial-listings/search/',
          search_commercial, name='search_commercial'),
-    path('commercial-listing/<slug:slug>/',
+    path('commercial-listings/<int:listing_id>/',
          single_commercial, name='commercial_details'),
     path('small-business-finance/', businessFinance, name='business_finance'),
     path('selling-process/', sellingProcess, name='selling_process'),
+    path('sell-your-business/', contactSelling, name='sellingPage'),
     path('blog/', include('blog.urls')),
     path('news/', include('news.urls')),
     path('endorsements/', include('endorsement.urls')),

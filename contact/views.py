@@ -3,6 +3,7 @@ from django.core.mail import send_mail, BadHeaderError
 from .models import ContactModel, ContactSelling, Contact
 from django.contrib import messages
 from mainstreetbiz.views import static_query
+from setting.models import SellYourBusiness
 
 
 def contact(request):
@@ -46,8 +47,10 @@ def contactSelling(request):
             request, 'Thank you for your message, we will get back to you soon')
 
         return redirect('/contact/sell-your-business')
-
-    return render(request, 'contact/sell-your-business.html', static_query())
+    sellingpage = SellYourBusiness.objects.filter().first()
+    context = {'sellingpage': sellingpage}
+    context.update(static_query())
+    return render(request, 'contact/sell-your-business.html', context)
 
 
 def contactModel(request):
