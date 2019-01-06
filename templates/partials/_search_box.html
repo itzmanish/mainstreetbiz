@@ -22,6 +22,7 @@
                                 <label class="sr-only">Area</label>
                                 <select name="area" class="form-control">
                                     <option selected="true" disabled="disabled">Area (All)</option>
+                                    <option value="">None</option>
                                     {% for key, value in area.items %}
                                     <option value="{{ key }}" {% if key == values.area %} selected {% endif %}>
                                         {{ value }} </option>
@@ -32,9 +33,10 @@
                         <!-- Form Row 2 -->
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
-                                <label class="sr-only">Bedrooms</label>
+                                <label class="sr-only">Business Type</label>
                                 <select name="business_type" class="form-control">
                                     <option selected="true" disabled="disabled">Business Type</option>
+                                    <option value="">None</option>
                                     {% for k, v in business_type_choice.items %}
                                     <option value="{{k}}" {% if k == values.business_type %} selected {% endif %}>
                                         {{v}} </option>
@@ -42,8 +44,10 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
+								<label class="sr-only">Price Range</label>
                                 <select name="price" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Price (Any)</option>
+                                    <option value="">None</option>
                                     {% for k,v in price.items %}
                                     <option value="{{k}}" {% if k == values.price %} selected {% endif %}>
                                         {{v}} </option>
