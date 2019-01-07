@@ -8,7 +8,7 @@ from mainstreetbiz.views import static_query
 
 area_choices = {}
 businessType_choices = {}
-listings = BusinessListing.objects.order_by('created_at')
+listings = BusinessListing.objects.order_by('-created_at')
 
 area_list = Area.objects.all()
 if area_list:
@@ -100,7 +100,7 @@ def completed(request):
 
 
 def commercial(request):
-    listings = CommercialListing.objects.order_by('created_at')
+    listings = CommercialListing.objects.order_by('-created_at')
     paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
@@ -123,7 +123,7 @@ def single_commercial(request, listing_id):
 
 
 def search_commercial(request):
-    queryset_list = CommercialListing.objects.order_by('created_at')
+    queryset_list = CommercialListing.objects.order_by('-created_at')
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
