@@ -6,9 +6,10 @@ from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
 
+
+# For filter options
 area_choices = {}
 businessType_choices = {}
-listings = BusinessListing.objects.order_by('-created_at')
 
 area_list = Area.objects.all()
 if area_list:
@@ -16,12 +17,17 @@ if area_list:
         area_choices[k] = k
 else:
     area_choices = {}
+
 business_type = Business_Type.objects.all()
 if business_type:
     for k in business_type:
         businessType_choices[k] = k
 else:
     businessType_choices = {}
+# for filter option
+
+
+listings = BusinessListing.objects.order_by('-created_at')
 
 
 def business(request):

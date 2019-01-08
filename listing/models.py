@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from realtor.models import Realtor, Disclaimer
 from django import forms
+from filer.fields.image import FilerImageField
 
 # Create your models here.
 
@@ -17,6 +18,7 @@ class BusinessListing(models.Model):
     description = models.TextField()
     financing_price = models.IntegerField()
     asking_price = models.IntegerField()
+
     image_main = models.ImageField(upload_to='images/listings/', blank=True)
     image_1 = models.ImageField(
         upload_to='images/listings/', blank=True)
@@ -105,30 +107,29 @@ class CommercialListing(models.Model):
 
 class Business_Type(models.Model):
     business_type = models.CharField(max_length=100)
-    business_type_slug = models.SlugField()
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.business_type
 
-    def save(self, *args, **kwargs):
-            # Newly created object, so set slug
-        self.business_type_slug = slugify(self.business_type)
-        super(Business_Type, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #         # Newly created object, so set slug
+    #     self.business_type_slug = slugify(self.business_type)
+    #     super(Business_Type, self).save(*args, **kwargs)
 
 
 class Area(models.Model):
     area = models.CharField(max_length=50)
-    area_slug = models.SlugField()
+    # area_slug = models.SlugField()
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.area
 
-    def save(self, *args, **kwargs):
-            # Newly created object, so set slug
-        self.area_slug = slugify(self.area)
-        super(Area, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #         # Newly created object, so set slug
+    #     self.area_slug = slugify(self.area)
+    #     super(Area, self).save(*args, **kwargs)
 
 
 class Status(models.Model):

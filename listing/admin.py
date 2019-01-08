@@ -29,17 +29,17 @@ class CommercialListingAdmin(ImportExportActionModelAdmin):
     list_per_page = 10
 
 
-class Business_TypeAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'business_type', 'business_type_slug', )
+class Business_TypeAdmin(ImportExportActionModelAdmin):
+    list_display = ('id', 'business_type', )
     list_display_links = ('business_type',)
-    prepopulated_fields = {'business_type_slug': ('business_type',)}
+
     search_fields = ('business_type', )
 
 
-class AreaAdmin(ImportExportModelAdmin):
+class AreaAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'area', 'created_at')
     list_display_links = ('area',)
-    prepopulated_fields = {'area_slug': ('area',)}
+
     search_fields = ('area', )
 
 
