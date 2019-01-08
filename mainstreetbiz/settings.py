@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'import_export',
     'admin_reorder',
+    'easy_thumbnails',
+    'filer',
+    'mptt',
 
 ]
 
@@ -295,6 +298,7 @@ ADMIN_REORDER = (
         {'model': 'setting.SellYourBusiness', 'label': 'Sell your business Page '},
         {'model': 'setting.BusinessFinance',
             'label': 'Business finance Page '},
+        {'model': 'setting.FileUploader', 'label': 'File Uploader'},
     )},
     {'app': 'realtor', 'label': 'Realtors', 'models': (
         {'model': 'realtor.Realtor', 'label': 'Realtors'},
@@ -342,3 +346,13 @@ ADMIN_REORDER = (
 )
 
 # django reorder apps end
+
+# django filer
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    # 'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
