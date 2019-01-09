@@ -9,33 +9,24 @@ from mainstreetbiz.views import static_query
 
 # For filter options
 
-area_choices = {}
+area_choices = []
 businessType_choices = {}
 
 
 def filterSelection(Area, Business_Type):
     global area_choices
     global businessType_choices
+    area_choices = []
+    businessType_choices = []
 
-    area_choices = {}
-    businessType_choices = {}
+    area_list = Area.objects.values()
+    area_choices = list(set(k['area'] for k in area_list))
 
-    area_list = Area.objects.all()
-    if area_list:
-        for k in area_list:
-            area_choices[k] = k
-    else:
-        area_choices = {}
+    business_type = Business_Type.objects.values()
+    businessType_choices = list(set(k['business_type'] for k in business_type))
 
-    business_type = Business_Type.objects.all()
-    if business_type:
-        for k in business_type:
-            businessType_choices[k] = k
-    else:
-        businessType_choices = {}
 
 # for filter option
-
 
 listings = BusinessListing.objects.order_by('-created_at')
 
