@@ -8,22 +8,32 @@ from mainstreetbiz.views import static_query
 
 
 # For filter options
+
 area_choices = {}
 businessType_choices = {}
 
-area_list = Area.objects.all()
-if area_list:
-    for k in area_list:
-        area_choices[k] = k
-else:
-    area_choices = {}
 
-business_type = Business_Type.objects.all()
-if business_type:
-    for k in business_type:
-        businessType_choices[k] = k
-else:
+def filterSelection(Area, Business_Type):
+    global area_choices
+    global businessType_choices
+
+    area_choices = {}
     businessType_choices = {}
+
+    area_list = Area.objects.all()
+    if area_list:
+        for k in area_list:
+            area_choices[k] = k
+    else:
+        area_choices = {}
+
+    business_type = Business_Type.objects.all()
+    if business_type:
+        for k in business_type:
+            businessType_choices[k] = k
+    else:
+        businessType_choices = {}
+
 # for filter option
 
 
@@ -34,6 +44,7 @@ def business(request):
     paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
+    filterSelection(Area, Business_Type)
     context = {
         'list': paged_listing,
         'area': area_choices,
@@ -110,6 +121,7 @@ def commercial(request):
     paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
+    filterSelection(Area, Business_Type)
     context = {
         'list': paged_listing,
         'area': area_choices,
