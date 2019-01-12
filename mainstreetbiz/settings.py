@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'filer',
     'mptt',
-
+    'feeds',
 ]
 
 MIDDLEWARE = [
@@ -341,6 +341,10 @@ ADMIN_REORDER = (
     {'app': 'downloads', 'label': 'Available Downloads', 'models': (
         {'model': 'downloads.Document', 'label': 'Documents'},
         {'model': 'downloads.FileUpload', 'label': 'File upload'}
+    )},
+    {'app': 'feeds', 'label': 'Feeds', 'models': (
+        {'model': 'feeds.FeedUrl', 'label': 'Add Feed url'},
+        {'model': 'feeds.FeedPost', 'label': 'Feeds'},
     )},
 
 )

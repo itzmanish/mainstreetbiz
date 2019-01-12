@@ -22,6 +22,7 @@ from listing.views import commercial, single_commercial, search_commercial, comp
 from contact.views import contactSelling
 
 urlpatterns = [
+    path('filer/', include('filer.urls')),
     path('', home, name='index'),
     path('legal-disclaimer/', legalDisclaimer, name='legal-disclaimer'),
     path('privacy-policy/', privacyPolicy, name='privacy-policy'),
@@ -46,4 +47,6 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('downloads/', include('downloads.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('feeds/', include('feeds.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
