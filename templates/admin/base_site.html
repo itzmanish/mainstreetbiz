@@ -4,8 +4,16 @@
 {% block branding %}
 <h1 id="head">
     <img src="{% static 'admin/img/logo.png' %}" alt="Mainstreetbiz" height="50px" width="90px" class="brand_img">
-    <span> Admin Panel </span>
+    <span> Admin </span>
 </h1>
+{% endblock %}
+{% block nav-global %}
+<div class="nav-item">
+    <a href="#" target="_blank">Google Analytics</a>
+    <a href="https://filemanager.mainstreetbiz.ca" target="_blank">File Manager</a>
+    <a href="https://pgadmin.mainstreetbiz.ca" target="_blank">Postgre Admin</a>
+    <a href="https://mail.mainstreetbiz.ca" target="_blank">Webmail</a>
+</div>
 {% endblock %}
 {% block extrastyle %}
 <link rel="stylesheet" href="{% static 'css/admin.css' %}">

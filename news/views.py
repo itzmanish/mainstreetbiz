@@ -5,7 +5,7 @@ from .models import News
 
 
 def home(request):
-    object_list = News.objects.all()
+    object_list = News.objects.all().order_by('-created_At')
     paginator = Paginator(object_list, 6)
 
     page = request.GET.get('page')

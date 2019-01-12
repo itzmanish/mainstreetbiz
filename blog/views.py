@@ -6,7 +6,7 @@ from mainstreetbiz.views import static_query
 
 
 def home(request):
-    object_list = Article.objects.all()
+    object_list = Article.objects.all().order_by('-created_At')
     paginator = Paginator(object_list, 6)
 
     page = request.GET.get('page')
