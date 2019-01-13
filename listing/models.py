@@ -154,20 +154,14 @@ class CompletedDeals(models.Model):
     CHOICE = (('commercial', 'commercial'),
               ('business', 'business'))
     Type = models.CharField(max_length=20, default='business', choices=CHOICE)
-    area = models.ForeignKey('Area', on_delete=models.SET_NULL, null=True)
+    area = models.CharField(max_length=100)
     title = models.CharField(max_length=300)
-    slug = models.SlugField(unique=True, max_length=500)
     subtitle = models.CharField(max_length=50)
     served_as = models.CharField(max_length=50)
     completion = models.DateField()
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-            # Newly created object, so set slug
-        self.slug = slugify(self.title)
-        super(CompletedDeals, self).save(*args, **kwargs)
 
 
 class ImageUpload(models.Model):

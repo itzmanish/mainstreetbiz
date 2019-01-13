@@ -14,14 +14,15 @@
       <div class="col-md-3">
         <div class="card shadow-sm">
           <div class="card-header text-center text-white">
-            {{ list_item.title }}
+            {{ list_item.title | title }}
             <br>
             ( {{ list_item.subtitle }} )
           </div>
           <div class="card-body p-0">
             <div class="card-text">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item no-border">Location : {{ list_item.area }}</li>
+                <li class="list-group-item text-center text-white no-border bg-secondary">
+                  {{ list_item.area | upper }}</li>
                 <li class="list-group-item no-border">Served as : {{ list_item.served_as }}</li>
                 <li class="list-group-item no-border">Completion : {{ list_item.completion }}</li>
                 <li class="list-group-item no-border">Type : {{ list_item.Type }}</li>
@@ -29,7 +30,7 @@
             </div>
 
           </div>
-          <hr class="my-1">
+          <hr class="my-1" style="max-width:80%; margin-left:22px;">
           <img class="logo mx-auto mb-3" src="{% static 'img/logo.png' %}" alt="">
         </div>
       </div>
