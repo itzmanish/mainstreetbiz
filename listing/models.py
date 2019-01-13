@@ -3,7 +3,6 @@ from django.template.defaultfilters import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from realtor.models import Realtor, Disclaimer
 from django import forms
-from filer.fields.image import FilerImageField
 
 # Create your models here.
 

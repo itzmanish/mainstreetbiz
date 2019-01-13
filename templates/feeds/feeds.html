@@ -1,14 +1,39 @@
 {% extends 'layout.html' %}
+{% block news_li_class %} active {% endblock %}
+{% block title %} News {% endblock %}
 {% block content %}
-
-<div class="disclaimer my-5">
-    <div class="container">
-        <h2 class="mb-3">RSS Feed</h2>
-        <ol>
-            {% for post in rss_feeds.all %}
-            <li>{{ post.date | date }} - <a href="{{ post.link }}">{{ post.title }}</a></li>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% if news %}
+            {% for news in news %}
+            <div class="post-preview">
+                <a href="{{ news.link }}">
+                    <h2 class="post-title">
+                        {{ news.title | title }}
+                    </h2>
+                </a>
+                <p class="post-meta">Published
+                    on {{ news.date | date }}</p>
+            </div>
+            <hr>
             {% endfor %}
-        </ol>
+            {% else %}
+            <div class="m-auto col-md-12">
+                <p>No News Story Available</p>
+            </div>
+            {% endif %}
+            <!-- Pager -->
+            <div class="clearfix">
+                {% if news.has_previous %}
+                <a class="btn btn-white float-left" href="?page=1">&larr; Newer News</a>
+                {% endif %}
+                {% if news.has_next %}
+                <a class="btn btn-white float-right" href="?page={{ news.next_page_number }}">Older News
+                    &rarr;</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 
