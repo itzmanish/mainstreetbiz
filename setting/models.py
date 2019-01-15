@@ -100,3 +100,12 @@ class SellYourBusiness(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class FooterImages(models.Model):
+    name = models.CharField(max_length=100)
+    link = models.URLField()
+    image = models.ImageField(upload_to='images/footer_images', null=True)
+
+    def __str__(self):
+        return self.name

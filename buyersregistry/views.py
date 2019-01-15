@@ -2,8 +2,21 @@ from django.shortcuts import render, redirect
 from mainstreetbiz.views import static_query
 from .models import Register, BuyersDirectoryPage
 from django.contrib import messages
+from contact.decorators import check_recaptcha
 
 
+def user_exist(email):
+    users = Register.objects.all()
+    for user in users:
+        user_existed = None
+        if user.email == email:
+            user_existed = True
+        else:
+            user_existed = False
+    return user_existed
+
+
+@check_recaptcha
 def register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -17,13 +30,28 @@ def register(request):
         max_cash = request.POST['max_cash']
         remarks = request.POST['remarks']
 
-        user = Register(first_name=first_name, last_name=last_name, email=email, phone=phone, business_type=business_type,
-                        investment_type=investment_type, business_area=business_area, business_price=business_price, max_cash=max_cash, remarks=remarks)
+        is_valid = None
+        if first_name and last_name and email and phone and business_area and business_price and business_type and investment_type and max_cash and remarks != '':
+            is_valid = True
+        else:
+            is_valid = False
 
-        user.save()
-        messages.success(
-            request, 'You are successfully registered with us.')
-        return redirect('/')
+        if request.recaptcha_is_valid and is_valid and ',' not in business_price and ',' not in max_cash and user_exist(email):
+            user = Register(first_name=first_name, last_name=last_name, email=email, phone=phone, business_type=business_type,
+                            investment_type=investment_type, business_area=business_area, business_price=business_price, max_cash=max_cash, remarks=remarks)
+
+            user.save()
+            messages.success(
+                request, 'You are successfully registered with us.')
+            return redirect('/buyers-inventory/register/')
+        else:
+            if(user_exist(email)):
+                messages.warning(
+                    request, 'This email is already exists.')
+            else:
+                messages.error(
+                    request, 'Please enter valid details.')
+            return redirect('/buyers-inventory/register/')
 
     return render(request, 'buyersregistry/register.html', static_query())
 

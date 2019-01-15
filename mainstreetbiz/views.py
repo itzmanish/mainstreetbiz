@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from realtor.models import LegalDisclaimer, PrivacyPolicy
 from listing.models import BusinessListing, FeaturedListing
-from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess
+from setting.models import SocialLink, Home, Contact, BuyingProcess, About, BusinessFinance, SellingProcess, FooterImages
 from feeds.models import FeedPost
 from django.db.models import Count
 
@@ -9,9 +9,11 @@ from django.db.models import Count
 def static_query():
     social = SocialLink.objects.filter().first()
     contact = Contact.objects.filter().first()
+    footer_img = FooterImages.objects.all()
     context = {
         'social': social,
-        'contact': contact
+        'contact': contact,
+        'footer_image': footer_img
     }
     return context
 

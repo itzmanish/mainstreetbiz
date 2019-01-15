@@ -127,8 +127,10 @@
                     <h5 class="headin5_amrc col_white_amrc pt2">Member</h5>
                     <!--headin5_amrc-->
                     <ul class="footer_ul_amrc">
-                        <li><img src="{% static 'img/bba.jpg' %}" alt="bba"> </li>
-                        <li><img src="{% static 'img/treb-logo.jpg' %}" alt="bba"> </li>
+                        {% for item in footer_image %}
+                        <li><a href="{{ item.link }}" target="_blank"><img src="{{ item.image.url }}" alt="{{ item.name }}"></a></li>
+                        {% endfor %}
+                        <!-- <li><img src="{% static 'img/treb-logo.jpg' %}" alt="bba"> </li -->
                     </ul>
                     <!--footer_ul_amrc ends here-->
                 </div>
@@ -157,7 +159,9 @@
                 <li><a href="{% url 'contact:contact' %}">Contact</a></li>
             </ul>
             <!--foote_bottom_ul_amrc ends here-->
-            <p class="text-center">Copyright @ <span class="year"></span> | Designed By <a class="footer-a" href="#">
+            <p class="text-center">Copyright @ <a class="footer-a" href="/">Mainstreetbiz </a><span class="year"></span>
+                | Designed By
+                <a class="footer-a" href="#">
                     Tej Infotech</a></p>
 
 
@@ -172,6 +176,7 @@
     <script src="{% static 'js/lightbox.min.js' %}"></script>
     <!-- Custom scripts for this template -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3JCAhNj6tVAO_LSb8M-AzMlidiT-RPAs&callback=initMap"
         async defer></script>

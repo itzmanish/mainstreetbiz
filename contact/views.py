@@ -4,29 +4,41 @@ from .models import ContactModel, ContactSelling, Contact
 from django.contrib import messages
 from mainstreetbiz.views import static_query
 from setting.models import SellYourBusiness
+from .decorators import check_recaptcha
 
 
+@check_recaptcha
 def contact(request):
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
+        is_valid = None
+        data = request.POST
+        if data['name'] and data['email'] and data['phone'] and data['message'] != '':
+            is_valid = True
+        else:
+            is_valid = False
+        if request.recaptcha_is_valid and is_valid:
+            contact = Contact(name=name, email=email,
+                              phone=phone, message=message)
+            contact.save()
+            subject = '{} ({}) wants to contact you'.format(name, email)
+            send_mail(subject, message, 'info@mainstreetbiz.ca',
+                      ('itzmk108@gmail.com',))
+            messages.success(
+                request, 'Your request has been submitted, a realtor will get back to you soon')
 
-        contact = Contact(name=name, email=email, phone=phone, message=message)
-
-        contact.save()
-        subject = '{} ({}) wants to contact you'.format(name, email)
-        send_mail(subject, message, 'info@mainstreetbiz.ca',
-                  ('itzmk108@gmail.com',))
-        messages.success(
-            request, 'Your request has been submitted, a realtor will get back to you soon')
-
-        return redirect('/contact')
+            return redirect('/contact')
+        else:
+            messages.error(
+                request, 'Please enter valid details')
 
     return render(request, 'contact/contact.html', static_query())
 
 
+@check_recaptcha
 def contactSelling(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -36,23 +48,35 @@ def contactSelling(request):
         type_of_business = request.POST['business_type']
         message = request.POST['message']
 
-        contact = ContactSelling(name=name, email=email, phone=phone, city=city,
-                                 type_of_business=type_of_business, message=message)
+        is_valid = None
+        data = request.POST
+        if data['name'] and data['email'] and data['phone'] and data['city'] and data['message'] != '':
+            is_valid = True
+        else:
+            is_valid = False
 
-        contact.save()
-        subject = '{} ({}) wants to contact you'.format(name, email)
-        send_mail(subject, message, 'info@mainstreetbiz.ca',
-                  ('itzmk108@gmail.com',))
-        messages.success(
-            request, 'Thank you for your message, we will get back to you soon')
+        if request.recaptcha_is_valid and is_valid:
+            contact = ContactSelling(name=name, email=email, phone=phone, city=city,
+                                     type_of_business=type_of_business, message=message)
+            contact.save()
+            subject = '{} ({}) wants to contact you'.format(name, email)
+            send_mail(subject, message, 'info@mainstreetbiz.ca',
+                      ('itzmk108@gmail.com',))
+            messages.success(
+                request, 'Thank you for your message, we will get back to you soon')
 
-        return redirect('/contact/sell-your-business')
+            return redirect('/contact/sell-your-business')
+        else:
+            messages.error(
+                request, 'Please enter valid details')
+
     sellingpage = SellYourBusiness.objects.filter().first()
     context = {'sellingpage': sellingpage}
     context.update(static_query())
     return render(request, 'contact/sell-your-business.html', context)
 
 
+@check_recaptcha
 def contactModel(request):
     if request.method == 'POST':
         listing_id = request.POST['listing_id']
@@ -63,15 +87,26 @@ def contactModel(request):
         phone = request.POST['phone']
         message = request.POST['message']
 
-        contact = ContactModel(listing_id=listing_id, listing_title=listing_title, name=name,
-                               email=email, phone=phone, message=message)
+        is_valid = None
+        data = request.POST
+        if data['listing_id'] and data['listing_title'] and data['listing_slug'] and data['name'] and data['email'] and data['phone'] and data['message'] != '':
+            is_valid = True
+        else:
+            is_valid = False
 
-        contact.save()
-        subject = '{} ({}) wants to contact you, regarding listing id {}'.format(
-            name, email, listing_id)
-        send_mail(subject, message, 'info@mainstreetbiz.ca',
-                  ('itzmk108@gmail.com',))
-        messages.success(
-            request, 'Your request has been submitted, a realtor will get back to you soon')
+        if request.recaptcha_is_valid and is_valid:
+            contact = ContactModel(listing_id=listing_id, listing_title=listing_title, name=name,
+                                   email=email, phone=phone, message=message)
 
-        return redirect('/listings/'+listing_slug)
+            contact.save()
+            subject = '{} ({}) wants to contact you, regarding listing id {}'.format(
+                name, email, listing_id)
+            send_mail(subject, message, 'info@mainstreetbiz.ca',
+                      ('itzmk108@gmail.com',))
+            messages.success(
+                request, 'Your request has been submitted, a realtor will get back to you soon')
+
+            return redirect('/listings/'+listing_slug)
+        else:
+            messages.error(
+                request, 'Please enter valid details')

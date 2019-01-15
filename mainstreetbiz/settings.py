@@ -294,6 +294,7 @@ ADMIN_REORDER = (
         {'model': 'setting.SellYourBusiness', 'label': 'Sell your business Page '},
         {'model': 'setting.BusinessFinance',
             'label': 'Business finance Page '},
+        {'model': 'setting.FooterImages', 'label': 'Footer Image'},
         {'model': 'setting.FileUploader', 'label': 'File Uploader'},
     )},
     {'app': 'realtor', 'label': 'Realtors', 'models': (
@@ -346,3 +347,5 @@ ADMIN_REORDER = (
 )
 
 # django reorder apps end
+# Google recaptcha
+GOOGLE_RECAPTCHA_SECRET_KEY = config('GOOGLE_RECAPTCHA_SECRET_KEY')
