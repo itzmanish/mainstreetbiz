@@ -128,7 +128,8 @@
                     <!--headin5_amrc-->
                     <ul class="footer_ul_amrc">
                         {% for item in footer_image %}
-                        <li><a href="{{ item.link }}" target="_blank"><img src="{{ item.image.url }}" alt="{{ item.name }}"></a></li>
+                        <li><a href="{{ item.link }}" target="_blank"><img src="{{ item.image.url }}" alt="{{ item.name }}"
+                                    style="max-width:230px;"></a></li>
                         {% endfor %}
                         <!-- <li><img src="{% static 'img/treb-logo.jpg' %}" alt="bba"> </li -->
                     </ul>
