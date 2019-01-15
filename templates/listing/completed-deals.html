@@ -5,40 +5,40 @@
 {% block listing_li_class %} active {% endblock %}
 
 {% block content %}
-
-<div class="my-4">
-  <div class="container">
-    <h1 class="border-bottom my-4">Completed Deals</h1>
-    <div class="row">
-      {% for list_item in list %}
-      <div class="col-md-3">
-        <div class="card shadow-sm">
-          <div class="card-header text-center text-white">
-            {{ list_item.title | title }}
-            <br>
-            ( {{ list_item.subtitle }} )
-          </div>
-          <div class="card-body p-0">
-            <div class="card-text">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center text-white no-border bg-secondary">
-                  {{ list_item.area | upper }}</li>
-                <li class="list-group-item no-border">Served as : {{ list_item.served_as }}</li>
-                <li class="list-group-item no-border">Completion : {{ list_item.completion }}</li>
-                <li class="list-group-item no-border">Type : {{ list_item.Type }}</li>
-              </ul>
+<div class="bg-grey">
+  <div class="py-4">
+    <div class="container">
+      <h1 class="border-bottom my-4">Completed Deals</h1>
+      <div class="row">
+        {% for list_item in list %}
+        <div class="col-md-3">
+          <div class="card shadow-sm">
+            <div class="card-header text-center text-white">
+              {{ list_item.title | title }}
+              <br>
+              ( {{ list_item.subtitle }} )
             </div>
+            <div class="card-body p-0">
+              <div class="card-text">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-center text-white no-border bg-secondary">
+                    {{ list_item.area | upper }}</li>
+                  <li class="list-group-item no-border"><b> Served as </b>: {{ list_item.served_as }}</li>
+                  <li class="list-group-item no-border"><b> Completion </b>: {{ list_item.completion }}</li>
+                  <li class="list-group-item no-border"><b>Type </b>: {{ list_item.Type }}</li>
+                </ul>
+              </div>
 
+            </div>
+            <hr class="my-1" style="max-width:80%; margin-left:22px;">
+            <img class="logo mx-auto mb-3" src="{% static 'img/logo.png' %}" alt="">
           </div>
-          <hr class="my-1" style="max-width:80%; margin-left:22px;">
-          <img class="logo mx-auto mb-3" src="{% static 'img/logo.png' %}" alt="">
         </div>
-      </div>
 
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
-
 
 {% endblock%}

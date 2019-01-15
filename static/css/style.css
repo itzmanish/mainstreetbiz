@@ -351,23 +351,27 @@
    background: #000 !important;
  }
 
+ .bg-grey {
+   background: #ddd
+ }
+
  .btn-secondary {
-   background: #ff5745 !important;
-   border: 1px solid #ff5745 !important;
+   background: #1654d0 !important;
+   border: 1px solid #1654d0 !important;
  }
 
  .btn-secondary:hover,
  .btn-secondary:active {
-   color: #ff5745 !important;
-   background: rgba(0, 0, 0, 0) !important;
-   border: 1px solid #ff5745 !important;
+   color: #1654d0 !important;
+   background: #fff !important;
+   border: 1px solid #1654d0 !important;
  }
 
  .badge-sold {
    margin-top: 0%;
    float: right;
-   color: #ff5745;
-   background-color: #ff5745;
+   color: ##1654d0;
+   background-color: #1654d0;
  }
 
  .text-bold {
