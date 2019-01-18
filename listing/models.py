@@ -3,18 +3,19 @@ from django.template.defaultfilters import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from realtor.models import Realtor, Disclaimer
 from django import forms
+from adminsortable.models import SortableMixin
 
 # Create your models here.
 
 
 # switched to minimal column for data import
-class BusinessListing(models.Model):
+class BusinessListing(SortableMixin):
     status = models.CharField(max_length=100)
     business = models.CharField(max_length=200)
     business_type = models.CharField(max_length=200, blank=True, null=True)
     listing_id = models.IntegerField()
     location = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     financing_price = models.IntegerField()
     asking_price = models.IntegerField()
 
@@ -28,6 +29,12 @@ class BusinessListing(models.Model):
     image_4 = models.ImageField(
         upload_to='images/listings/', blank=True)
     created_at = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        ordering = ['my_order']
+
+    my_order = models.PositiveIntegerField(
+        default=0, editable=False, db_index=True)
 
     def __str__(self):
         return self.business
@@ -36,13 +43,13 @@ class BusinessListing(models.Model):
         return self.description[:50] + '...'
 
 
-class CommercialListing(models.Model):
+class CommercialListing(SortableMixin):
     status = models.CharField(max_length=100)
     business = models.CharField(max_length=200)
     business_type = models.CharField(max_length=200, blank=True, null=True)
     listing_id = models.IntegerField()
     location = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     financing_price = models.IntegerField()
     asking_price = models.IntegerField()
     image_main = models.ImageField(upload_to='images/listings/', blank=True)
@@ -55,6 +62,12 @@ class CommercialListing(models.Model):
     image_4 = models.ImageField(
         upload_to='images/listings/', blank=True)
     created_at = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        ordering = ['my_order']
+
+    my_order = models.PositiveIntegerField(
+        default=0, editable=False, db_index=True)
 
     def __str__(self):
         return self.business

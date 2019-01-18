@@ -1,0 +1,17 @@
+{% extends change_list_template_extends %}
+{% load i18n %}
+
+{% block object-tools-items %}
+{% for sorting_filter in sorting_filters %}
+<li>
+    <a href="./sort/?sort_filter={{ forloop.counter0 }}">{% trans 'Change Order of' %} {{ sorting_filter }}</a>
+</li>
+{% empty %}
+<li>
+    <a href="./sort/">{% trans 'Change Order' %}</a>
+</li>
+{% endfor %}
+{% include "admin/import_export/change_list_import_item.html" %}
+{% include "admin/import_export/change_list_export_item.html" %}
+{{ block.super }}
+{% endblock %}

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'import_export',
     'admin_reorder',
     'feeds',
+    'adminsortable',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
             # 'loaders': [
             #     # insert your TEMPLATE_LOADERS here
@@ -320,11 +322,11 @@ ADMIN_REORDER = (
     )},
     {'app': 'blog', 'label': 'Blog', 'models': (
         {'model': 'blog.Article', 'label': 'Articles'},
-        {'model': 'blog.ImageUpload', 'label': 'Image upload'},
+        {'model': 'blog.ImageUpload', 'label': 'Image uploader'},
     )},
-    {'app': 'news', 'label': 'News', 'models': (
-        {'model': 'news.News', 'label': 'News'},
-        {'model': 'news.ImageUpload', 'label': 'Image upload'}
+    {'app': 'feeds', 'label': 'Feeds', 'models': (
+        {'model': 'feeds.FeedUrl', 'label': 'Add Feed url'},
+        {'model': 'feeds.FeedPost', 'label': 'Feeds'},
     )},
     {'app': 'endorsement', 'label': 'Endorsements', 'models': (
         {'model': 'endorsement.Clients', 'label': 'Client Reviews'},
@@ -338,10 +340,6 @@ ADMIN_REORDER = (
     {'app': 'downloads', 'label': 'Available Downloads', 'models': (
         {'model': 'downloads.Document', 'label': 'Documents'},
         {'model': 'downloads.FileUpload', 'label': 'File upload'}
-    )},
-    {'app': 'feeds', 'label': 'Feeds', 'models': (
-        {'model': 'feeds.FeedUrl', 'label': 'Add Feed url'},
-        {'model': 'feeds.FeedPost', 'label': 'Feeds'},
     )},
 
 )

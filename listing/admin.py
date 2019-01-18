@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import BusinessListing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile, CommercialListing
-from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ImportExportMixin
+from adminsortable.admin import SortableAdmin
 
 
 @admin.register(BusinessListing)
-class BusinessListingAdmin(ImportExportActionModelAdmin):
+class BusinessListingAdmin(ImportExportMixin, SortableAdmin):
+    sortable_change_list_with_sort_link_template = 'admin/change_list_import_export_sortable.html'
     list_display = ('id', 'business', 'listing_id', 'asking_price',
                     'created_at', 'status', )
     list_display_links = ('business', 'listing_id', )
@@ -12,12 +14,13 @@ class BusinessListingAdmin(ImportExportActionModelAdmin):
     list_filter = ('created_at', 'status',)
     # list_editable = ('is_published', 'is_sold', )
     search_fields = ('listing_id', 'business', )
-    ordering = ('listing_id',)
+    ordering = ('my_order',)
     list_per_page = 10
 
 
 @admin.register(CommercialListing)
-class CommercialListingAdmin(ImportExportActionModelAdmin):
+class CommercialListingAdmin(ImportExportMixin, SortableAdmin):
+    sortable_change_list_with_sort_link_template = 'admin/change_list_import_export_sortable.html'
     list_display = ('id', 'business', 'listing_id', 'asking_price',
                     'created_at', 'status', )
     list_display_links = ('business', 'listing_id', )
@@ -25,7 +28,7 @@ class CommercialListingAdmin(ImportExportActionModelAdmin):
     list_filter = ('created_at', 'status',)
     # list_editable = ('is_published', 'is_sold', )
     search_fields = ('listing_id', 'business', )
-    ordering = ('listing_id',)
+    ordering = ('my_order',)
     list_per_page = 10
 
 
