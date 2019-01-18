@@ -10,9 +10,10 @@
     <div class="container">
         {% include 'partials/_alert.html' %}
         <a href="{% url 'commercial-listing' %}" class="btn btn-light mb-4">Back To Listings</a>
+
         <div class="row">
-            <div class="col-md-9">
-                <h1>{{ property.title }}</h1>
+            <div class="col-md-10 mx-auto">
+                <h1>{{ property.business }}</h1>
                 <div class="overlay bg-transparent">
                     <h2>
                         <span class="badge
@@ -22,10 +23,12 @@
                         badge-success
                         {% endif %}
                          text-white">Status:
-                            {{ property.status }} </span>
+                            {{property.status}} </span>
                     </h2>
                     <!-- Home Main Image -->
+                    {% if property.image_main %}
                     <img src="{{ property.image_main.url }}" alt="" class="img-main img-fluid mb-3">
+                    {% endif %}
                 </div>
                 <!-- Thumbnails -->
                 <div class="row mb-3 thumbs">
@@ -74,10 +77,10 @@
                 </div>
                 <div class="my-3">
                     <h5>
-                        Listing ID : {{ property.listing_id }}
+                        Listing ID - {{ property.listing_id }}
                     </h5>
                     <h4>
-                        Location : {{ property.area }}
+                        Location - {{ property.location }}
                     </h4>
                     <p>
                         For sale - {{ property.business_type }}
@@ -87,41 +90,29 @@
                 <!-- Description -->
                 <div class="row mb-5">
                     <div class="col-md-12">
-                        {{ property.description | safe}}
+                        {{ property.description | linebreaks}}
                     </div>
                     <div class="col-md-6">
                         <h5>
-                            Financing: ${{ property.finance | intcomma }}
+                            Financing: ${{ property.financing_price | intcomma }}
                         </h5>
                         <h5>
-                            Asking: ${{ property.price | intcomma }}
+                            Asking: ${{ property.asking_price | intcomma }}
                         </h5>
                     </div>
                     <div class="pt-4 col-md-12">
                         <h6> NDA & Disclaimer </h6>
                         <hr>
-                        {{ property.disclaimer.disclaimer | safe }}
+                        {{ property.nda_and_disclaimer.disclaimer | safe }}
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-3">
-                    <img class="card-img-top" src=" {{ property.realtor.photo.url }} " alt="Seller of the month">
-                    <div class="card-body">
-                        <h5 class="card-title">Property Realtor</h5>
-                        <h6 class="text-secondary"> {{ property.realtor.name }} </h6>
-                    </div>
-                </div>
-                <button class="btn btn-secondary btn-block btn-md" data-toggle="modal" data-target="#inquiryModal">Make
-                    An
-                    Inquiry</button>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Inquiry Modal -->
-<div class="modal fade" id="inquiryModal" role="dialog">
+<!-- <div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -161,6 +152,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock%}

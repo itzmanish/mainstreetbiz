@@ -29,6 +29,8 @@ class BusinessListing(SortableMixin):
     image_4 = models.ImageField(
         upload_to='images/listings/', blank=True)
     created_at = models.DateTimeField(auto_now=True)
+    nda_and_disclaimer = models.ForeignKey(
+        Disclaimer, null=True, on_delete=models.SET_NULL)
 
     class Meta(object):
         ordering = ['my_order']
@@ -62,6 +64,8 @@ class CommercialListing(SortableMixin):
     image_4 = models.ImageField(
         upload_to='images/listings/', blank=True)
     created_at = models.DateTimeField(auto_now=True)
+    nda_and_disclaimer = models.ForeignKey(
+        Disclaimer, null=True, on_delete=models.SET_NULL)
 
     class Meta(object):
         ordering = ['my_order']
