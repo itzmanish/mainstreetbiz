@@ -74,6 +74,7 @@ def contactSelling(request):
     return render(request, 'contact/sell-your-business.html', context)
 
 
+@check_recaptcha
 def contactModel(request):
     if request.method == 'POST':
         listing_id = request.POST['listing_id']
@@ -101,7 +102,9 @@ def contactModel(request):
             messages.success(
                 request, 'Your request has been submitted, a realtor will get back to you soon')
 
-            return HttpResponseRedirect(request.path_info)
+            return HttpResponseRedirect("/")
         else:
             messages.error(
                 request, 'Please enter valid details')
+    print(request)
+    return HttpResponseRedirect("/")
