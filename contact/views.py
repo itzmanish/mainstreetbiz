@@ -63,7 +63,7 @@ def contactSelling(request):
             messages.success(
                 request, 'Thank you for your message, we will get back to you soon')
 
-            return redirect('/contact/sell-your-business')
+            return redirect('/sell-your-business')
         else:
             messages.error(
                 request, 'Please enter valid details')
