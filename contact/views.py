@@ -24,8 +24,8 @@ def contact(request):
                               phone=phone, message=message)
             contact.save()
             subject = '{} ({}) wants to contact you'.format(name, email)
-            send_mail(subject, message, 'info@mainstreetbiz.ca',
-                      ('itzmk108@gmail.com',))
+            send_mail(subject, message, 'Mainstreetbiz <info@mainstreetbiz.ca>',
+                      ('itzmk108@gmail.com', 'info@mainstreetbiz.ca'))
             messages.success(
                 request, 'Your request has been submitted, a realtor will get back to you soon')
 
@@ -58,8 +58,8 @@ def contactSelling(request):
                                      type_of_business=type_of_business, message=message)
             contact.save()
             subject = '{} ({}) wants to contact you'.format(name, email)
-            send_mail(subject, message, 'info@mainstreetbiz.ca',
-                      ('itzmk108@gmail.com',))
+            send_mail(subject, message, 'Mainstreetbiz <info@mainstreetbiz.ca>',
+                      ('itzmk108@gmail.com', 'info@mainstreetbiz.ca'))
             messages.success(
                 request, 'Thank you for your message, we will get back to you soon')
 
@@ -97,8 +97,8 @@ def contactModel(request):
             contact.save()
             subject = '{} ({}) wants to contact you, regarding listing id {}'.format(
                 name, email, listing_id)
-            send_mail(subject, message, 'info@mainstreetbiz.ca',
-                      ('itzmk108@gmail.com',))
+            send_mail(subject, message, 'Mainstreetbiz <info@mainstreetbiz.ca>',
+                      ('itzmk108@gmail.com', 'info@mainstreetbiz.ca'))
             messages.success(
                 request, 'Your request has been submitted, a realtor will get back to you soon')
 
