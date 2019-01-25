@@ -27,7 +27,7 @@ class ContactSelling(models.Model):
 
 class ContactModel(models.Model):
     listing_id = models.IntegerField()
-    listing_title = models.CharField(max_length=500)
+    business = models.CharField(max_length=500)
     name = models.CharField(max_length=50)
     email = models.EmailField()
     phone = models.CharField(max_length=20, null=True, blank=True)

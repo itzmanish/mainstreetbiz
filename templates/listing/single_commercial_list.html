@@ -12,7 +12,7 @@
         <a href="{% url 'commercial-listing' %}" class="btn btn-light mb-4">Back To Listings</a>
 
         <div class="row">
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-9">
                 <h1>{{ property.business }}</h1>
                 <div class="overlay bg-transparent">
                     <h2>
@@ -107,12 +107,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img class="card-img-top" src=" " alt="Seller of the month">
+                    <div class="card-body">
+                        <h5 class="card-title">Property Realtor</h5>
+                        <h6 class="text-secondary"> {{ property.realtor.name }} </h6>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-block btn-md" data-toggle="modal" data-target="#inquiryModal">Make
+                    An
+                    Inquiry</button>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Inquiry Modal -->
-<!-- <div class="modal fade" id="inquiryModal" role="dialog">
+<div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -125,10 +137,9 @@
                 <form action="{% url 'contact:contact_model' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="listing_id" value="{{ property.listing_id }}">
-                    <input type="hidden" name="listing_slug" value="{{ property.slug }}">
                     <div class="form-group">
                         <label for="property_name" class="col-form-label">Property:</label>
-                        <input type="text" name="listing_title" class="form-control" value=" {{ property.title }} ">
+                        <input type="text" name="listing_title" class="form-control" value=" {{ property.business }} ">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Name:</label>
@@ -152,6 +163,6 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 {% endblock%}

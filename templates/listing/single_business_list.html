@@ -11,7 +11,7 @@
         {% include 'partials/_alert.html' %}
         <a href="{% url 'listing:business_listing' %}" class="btn btn-light mb-4">Back To Listings</a>
         <div class="row">
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-9">
                 <h1>{{ property.business }}</h1>
                 <div class="overlay bg-transparent">
                     <h2>
@@ -106,12 +106,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img class="card-img-top" src=" " alt="Seller of the month">
+                    <div class="card-body">
+                        <h5 class="card-title">Property Realtor</h5>
+                        <h6 class="text-secondary"> {{ property.realtor.name }} </h6>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-block btn-md" data-toggle="modal" data-target="#inquiryModal">Make
+                    An
+                    Inquiry</button>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Inquiry Modal -->
-<!-- <div class="modal fade" id="inquiryModal" role="dialog">
+<div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -150,6 +162,6 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 {% endblock%}

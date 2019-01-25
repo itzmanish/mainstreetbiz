@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 from .models import ContactModel, ContactSelling, Contact
 from django.contrib import messages
@@ -15,8 +15,7 @@ def contact(request):
         phone = request.POST['phone']
         message = request.POST['message']
         is_valid = None
-        data = request.POST
-        if data['name'] and data['email'] and data['phone'] and data['message'] != '':
+        if name and email and phone and message != '':
             is_valid = True
         else:
             is_valid = False
@@ -49,8 +48,7 @@ def contactSelling(request):
         message = request.POST['message']
 
         is_valid = None
-        data = request.POST
-        if data['name'] and data['email'] and data['phone'] and data['city'] and data['message'] != '':
+        if name and email and phone and city and message != '':
             is_valid = True
         else:
             is_valid = False
@@ -76,26 +74,23 @@ def contactSelling(request):
     return render(request, 'contact/sell-your-business.html', context)
 
 
-@check_recaptcha
 def contactModel(request):
     if request.method == 'POST':
         listing_id = request.POST['listing_id']
-        listing_title = request.POST['listing_title']
-        listing_slug = request.POST['listing_slug']
+        business = request.POST['listing_title']
         name = request.POST['name']
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
 
         is_valid = None
-        data = request.POST
-        if data['listing_id'] and data['listing_title'] and data['listing_slug'] and data['name'] and data['email'] and data['phone'] and data['message'] != '':
+        if listing_id and business and name and email and message != '':
             is_valid = True
         else:
             is_valid = False
 
         if request.recaptcha_is_valid and is_valid:
-            contact = ContactModel(listing_id=listing_id, listing_title=listing_title, name=name,
+            contact = ContactModel(listing_id=listing_id, business=business, name=name,
                                    email=email, phone=phone, message=message)
 
             contact.save()
@@ -106,7 +101,7 @@ def contactModel(request):
             messages.success(
                 request, 'Your request has been submitted, a realtor will get back to you soon')
 
-            return redirect('/listings/'+listing_slug)
+            return HttpResponseRedirect(request.path_info)
         else:
             messages.error(
                 request, 'Please enter valid details')
