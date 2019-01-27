@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BusinessListing, Business_Type, Area, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile, CommercialListing
+from .models import BusinessListing, Status, FeaturedListing, CompletedDeals, ImageUpload, ImageUploadFile, CommercialListing
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ImportExportMixin
 from adminsortable.admin import SortableAdmin
 
@@ -32,18 +32,18 @@ class CommercialListingAdmin(ImportExportMixin, SortableAdmin):
     list_per_page = 10
 
 
-class Business_TypeAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'business_type', )
-    list_display_links = ('business_type',)
+# class Business_TypeAdmin(ImportExportActionModelAdmin):
+#     list_display = ('id', 'business_type', )
+#     list_display_links = ('business_type',)
 
-    search_fields = ('business_type', )
+#     search_fields = ('business_type', )
 
 
-class AreaAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'area', 'created_at')
-    list_display_links = ('area',)
+# class AreaAdmin(ImportExportActionModelAdmin):
+#     list_display = ('id', 'area', 'created_at')
+#     list_display_links = ('area',)
 
-    search_fields = ('area', )
+#     search_fields = ('area', )
 
 
 @admin.register(FeaturedListing)
@@ -81,7 +81,3 @@ class UploadImageAdmin(admin.ModelAdmin):
 class StatusAdmin(admin.ModelAdmin):
     list_display = ('id', 'status', 'created_at')
     list_display_links = ('status',)
-
-
-admin.site.register(Business_Type, Business_TypeAdmin)
-admin.site.register(Area, AreaAdmin)

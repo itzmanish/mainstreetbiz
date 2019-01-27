@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .models import BusinessListing, Area, Business_Type, CompletedDeals, CommercialListing
+from .models import BusinessListing, CompletedDeals, CommercialListing
 from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
@@ -10,24 +10,36 @@ from mainstreetbiz.views import static_query
 # For filter options
 
 area_choices = []
-businessType_choices = {}
+businessType_choices = []
 
 
-def filterSelection(Area, Business_Type):
+def filterSelection(BusinessListing={}, CommercialListing={}, business_category={}):
     global area_choices
     global businessType_choices
     area_choices = []
     businessType_choices = []
 
-    area_list = Area.objects.values()
-    area_choices = list(set(k['area'] for k in area_list))
+    # area_choices = list(set(k['area'] for k in area_list))
 
-    business_type = Business_Type.objects.values()
-    businessType_choices = list(set(k['business_type'] for k in business_type))
+    if business_category == 'business':
+        business_listings = BusinessListing.objects.values()
+        if business_listings:
+            businessType_choices = list(
+                set(k['business_type'] for k in business_listings))
+            area_choices = list(set(k['location'] for k in business_listings))
+    elif business_category == 'commercial':
+        commercial_listings = CommercialListing.objects.values()
+        if commercial_listings:
+            businessType_choices = list(
+                set(k['business_type'] for k in commercial_listings))
+            area_choices = list(set(k['location']
+                                    for k in commercial_listings))
+    else:
+        businessType_choices = []
+        area_choices = []
 
 
 # for filter option
-
 listings = BusinessListing.objects.order_by('-created_at')
 
 
@@ -35,7 +47,8 @@ def business(request):
     paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
-    filterSelection(Area, Business_Type)
+    filterSelection(BusinessListing=BusinessListing,
+                    business_category='business')
     context = {
         'list': paged_listing,
         'area': area_choices,
@@ -112,7 +125,8 @@ def commercial(request):
     paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listing = paginator.get_page(page)
-    filterSelection(Area, Business_Type)
+    filterSelection(CommercialListing=CommercialListing,
+                    business_category='commercial')
     context = {
         'list': paged_listing,
         'area': area_choices,

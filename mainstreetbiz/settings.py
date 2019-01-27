@@ -310,8 +310,8 @@ ADMIN_REORDER = (
         {'model': 'listing.CommercialListing', 'label': 'Commercial Listings'},
         {'model': 'listing.CompletedDeals', 'label': 'Completed Deals'},
         {'model': 'listing.FeaturedListing', 'label': 'Featured Listing'},
-        {'model': 'listing.Business_Type', 'label': 'Business Types'},
-        {'model': 'listing.Area', 'label': 'Area'},
+        # {'model': 'listing.Business_Type', 'label': 'Business Types'},
+        # {'model': 'listing.Area', 'label': 'Area'},
         {'model': 'listing.Status', 'label': 'Status'},
         {'model': 'listing.ImageUpload', 'label': 'Image upload'}
     )},
