@@ -8,10 +8,26 @@ from django.core.exceptions import ValidationError
 
 
 def validate_only_one_instance(obj):
+    """ this will validate for only one instance of a choice of page """
     model = obj.__class__
-    if (model.objects.count() > 0 and
-            obj.id != model.objects.get().id):
-        raise ValidationError("Can only create 1 %s instance" % model.__name__)
+    # Check for instance of page if it is already exist.
+    items = model.objects.filter(page_name=obj.page_name)
+    # Check if existing instance have the same id of that instance.
+
+    def check_id(model, obj, items):
+        try:
+            ids = model.objects.get(page_name=obj.page_name)
+        except model.DoesNotExist:
+            ids = None
+        # If existing instance have the same id which we want to add or update then return false.
+        if items and ids:
+            return obj.id != ids.id
+        else:
+            return False
+    # I we get true return from function check_id raise a validation error so that instance can't be created.
+    if check_id(model, obj, items):
+        raise ValidationError(
+            "This {0} instance with page name '{1}' is exists, so please add another or edit that page".format(model.__name__, obj.page_name))
 
 
 class SocialLink(models.Model):
@@ -22,9 +38,6 @@ class SocialLink(models.Model):
 
     def __str__(self):
         return 'Social Links'
-
-    # def clean(self):
-    #     validate_only_one_instance(self)
 
 
 class Contact(models.Model):
@@ -109,3 +122,36 @@ class FooterImages(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MetaTags(models.Model):
+    CHOICES = (('home', 'home'),
+               ('about', 'about'),
+               ('business', 'business'),
+               ('buying-process', 'buying-process'),
+               ('small-business-finance', 'small-business-finance'),
+               ('business-listing', 'business-listing'),
+               ('commercial-listing', 'commercial-listing'),
+               ('blog', 'blog'),
+               ('download', 'download'),
+               ('selling-process', 'selling-process'),
+               ('completed-deals', 'completed-deals'),
+               ('sell-your-business', 'sell-your-business'),
+               ('buyers-directory', 'buyers-directory'),
+               ('buyers-directory-register', 'buyers-directory-register'),
+               ('endorsements', 'endorsements'),
+               ('news', 'news'),
+               ('contact', 'contact'),
+               )
+
+    page_name = models.CharField(
+        max_length=50, choices=CHOICES, default='home')
+    meta_title = models.TextField()
+    meta_description = models.TextField()
+    meta_keywords = models.TextField()
+
+    def __str__(self):
+        return self.page_name
+
+    def clean(self):
+        validate_only_one_instance(self)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, SocialLink, Home, About, BuyingProcess, BusinessFinance, SellingProcess, SellYourBusiness, FooterImages
+from .models import Contact, SocialLink, Home, About, BuyingProcess, BusinessFinance, SellingProcess, SellYourBusiness, FooterImages, MetaTags
 # Register your models here.
 
 
@@ -84,3 +84,4 @@ admin.site.register(About, AboutAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(SocialLink, SocialLinkAdmin)
 admin.site.register(FooterImages)
+admin.site.register(MetaTags)
