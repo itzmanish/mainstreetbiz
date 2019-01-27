@@ -148,7 +148,7 @@ class MetaTags(models.Model):
         max_length=50, choices=CHOICES, default='home')
     meta_title = models.TextField()
     meta_description = models.TextField(blank=True, null=True)
-    meta_keywords = models.TextField(blank=True, null=True)
+    meta_keyword = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.page_name
