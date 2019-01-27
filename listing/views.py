@@ -62,7 +62,8 @@ def business(request):
 
 def search_business(request):
     queryset_list = listings
-
+    filterSelection(BusinessListing=BusinessListing,
+                    business_category='business')
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
@@ -147,7 +148,8 @@ def single_commercial(request, listing_id):
 
 def search_commercial(request):
     queryset_list = CommercialListing.objects.order_by('-created_at')
-
+    filterSelection(CommercialListing=CommercialListing,
+                    business_category='commercial')
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
