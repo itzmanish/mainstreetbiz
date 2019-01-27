@@ -128,7 +128,6 @@ class MetaTags(models.Model):
     CHOICES = (('home', 'home'),
                ('our-team', 'our-team'),
                ('about-business', 'about-business'),
-               ('business', 'business'),
                ('buying-process', 'buying-process'),
                ('small-business-finance', 'small-business-finance'),
                ('business-listing', 'business-listing'),
