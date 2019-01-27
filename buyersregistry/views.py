@@ -3,6 +3,7 @@ from mainstreetbiz.views import static_query
 from .models import Register, BuyersDirectoryPage
 from django.contrib import messages
 from contact.decorators import check_recaptcha
+from setting.models import MetaTags
 
 
 def user_exist(email):
@@ -52,12 +53,16 @@ def register(request):
                 messages.error(
                     request, 'Please enter valid details.')
             return redirect('/buyers-inventory/register/')
-
-    return render(request, 'buyersregistry/register.html', static_query())
+    meta = MetaTags.objects.filter(
+        page_name='buyer-directory-register').first()
+    context = {'meta': meta}
+    context.update(static_query())
+    return render(request, 'buyersregistry/register.html', context)
 
 
 def inventory(request):
     buyers_directory = BuyersDirectoryPage.objects.filter().first()
-    context = {'directory': buyers_directory}
+    meta = MetaTags.objects.filter(page_name='buyers-directory').first()
+    context = {'directory': buyers_directory, 'meta': meta}
     context.update(static_query())
     return render(request, 'buyersregistry/home.html', context)

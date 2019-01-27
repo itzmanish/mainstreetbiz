@@ -1,7 +1,11 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block title %} Endorsements {% endblock %}
-{% block endorsement_li_class %} active {% endblock %}
+{% block meta %}
+<meta name="description" content="{{ meta.meta_description }}">
+<meta name="keyword" content="{{ meta.meta_keyword }}">
+{% endblock %}
+{% block title %} {{ meta.meta_title }} {% endblock %}
 {% block content %}
 
 <div class="disclaimer my-5">

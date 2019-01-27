@@ -5,7 +5,7 @@ from .models import BusinessListing, CompletedDeals, CommercialListing
 from .choices import price_choices
 # Create your views here.
 from mainstreetbiz.views import static_query
-
+from setting.models import MetaTags
 
 # For filter options
 
@@ -49,12 +49,14 @@ def business(request):
     paged_listing = paginator.get_page(page)
     filterSelection(BusinessListing=BusinessListing,
                     business_category='business')
+    meta = MetaTags.objects.filter(page_name='business-listing').first()
     context = {
         'list': paged_listing,
         'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices,
-        'form_action_url': '/business-listings/search/'
+        'form_action_url': '/business-listings/search/',
+        'meta': meta,
     }
     context.update(static_query())
     return render(request, 'listing/business.html', context)
@@ -116,7 +118,8 @@ def single_business(request, listing_id):
 def completed(request):
     property = CompletedDeals.objects.order_by(
         '-completion')
-    context = {'list': property}
+    meta = MetaTags.objects.filter(page_name='completed-deals').first()
+    context = {'list': property, 'meta': meta}
     context.update(static_query())
     return render(request, 'listing/completed-deals.html', context)
 
@@ -128,12 +131,14 @@ def commercial(request):
     paged_listing = paginator.get_page(page)
     filterSelection(CommercialListing=CommercialListing,
                     business_category='commercial')
+    meta = MetaTags.objects.filter(page_name='commercial_listing').first()
     context = {
         'list': paged_listing,
         'area': area_choices,
         'price': price_choices,
         'business_type_choice': businessType_choices,
-        'form_action_url': '/commercial-listings/search/'
+        'form_action_url': '/commercial-listings/search/',
+        'meta': meta,
     }
     context.update(static_query())
     return render(request, 'listing/commercial.html', context)

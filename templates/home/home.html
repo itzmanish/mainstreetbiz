@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %} Mainstreetbiz {% endblock %}
+{% block meta %}
+<meta name="description" content="{{ meta.meta_description }}">
+<meta name="keyword" content="{{ meta.meta_keyword }}">
+{% endblock %}
+{% block title %} {{ meta.meta_title }} {% endblock %}
 {% block home_li_class %} active {% endblock %}
 {% block content %}
 

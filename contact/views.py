@@ -3,7 +3,7 @@ from django.core.mail import send_mail, BadHeaderError
 from .models import ContactModel, ContactSelling, Contact
 from django.contrib import messages
 from mainstreetbiz.views import static_query
-from setting.models import SellYourBusiness
+from setting.models import SellYourBusiness, MetaTags
 from .decorators import check_recaptcha
 
 
@@ -33,8 +33,11 @@ def contact(request):
         else:
             messages.error(
                 request, 'Please enter valid details')
-
-    return render(request, 'contact/contact.html', static_query())
+    meta = MetaTags.objects.filter(
+        page_name='contact').first()
+    context = {'meta': meta}
+    context.update(static_query())
+    return render(request, 'contact/contact.html', context)
 
 
 @check_recaptcha
@@ -69,7 +72,9 @@ def contactSelling(request):
                 request, 'Please enter valid details')
 
     sellingpage = SellYourBusiness.objects.filter().first()
-    context = {'sellingpage': sellingpage}
+    meta = MetaTags.objects.filter(
+        page_name='sell-your-business').first()
+    context = {'sellingpage': sellingpage, 'meta': meta}
     context.update(static_query())
     return render(request, 'contact/sell-your-business.html', context)
 

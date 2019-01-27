@@ -287,6 +287,7 @@ ADMIN_REORDER = (
         'auth.User',
     )},
     {'app': 'setting', 'label': 'Site settings', 'models': (
+        {'model': 'setting.MetaTags', 'label': 'Meta tags'},
         {'model': 'setting.SocialLink', 'label': 'Social links'},
         {'model': 'setting.Contact', 'label': 'Footer contact field'},
         {'model': 'setting.Home', 'label': 'Home Page '},
