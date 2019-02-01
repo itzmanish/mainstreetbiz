@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block listing_li_class %} active {% endblock %}
-{% block title %} {{ property.title }} {% endblock %}
+{% block title %} {{ property.business }} {% endblock %}
 {% block content %}
 
 <!-- Page Header -->
@@ -18,10 +18,10 @@
                         <span class="badge
                         {% if property.status == 'Sold Firm' %}
                         badge-danger
-                         {% else %}
+                        {% else %}
                         badge-success
                         {% endif %}
-                         text-white">Status:
+                        text-white">Status:
                             {{property.status}} </span>
                     </h2>
                     <!-- Home Main Image -->
