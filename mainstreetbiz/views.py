@@ -58,7 +58,7 @@ def buyingProcess(request):
 
 def sellingProcess(request):
     selling = SellingProcess.objects.filter().first()
-    meta = MetaTags.objects.filter(page_name=selling-process).first()
+    meta = MetaTags.objects.filter(page_name='selling-process').first()
     context = {'selling': selling, 'meta': meta}
     context.update(static_query())
     return render(request, 'home/selling-process.html', context)
