@@ -54,7 +54,7 @@ def register(request):
                     request, 'Please enter valid details.')
             return redirect('/buyers-inventory/register/')
     meta = MetaTags.objects.filter(
-        page_name='buyer-directory-register').first()
+        page_name='buyers-directory-register').first()
     context = {'meta': meta}
     context.update(static_query())
     return render(request, 'buyersregistry/register.html', context)

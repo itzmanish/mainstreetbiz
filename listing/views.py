@@ -131,7 +131,7 @@ def commercial(request):
     paged_listing = paginator.get_page(page)
     filterSelection(CommercialListing=CommercialListing,
                     business_category='commercial')
-    meta = MetaTags.objects.filter(page_name='commercial_listing').first()
+    meta = MetaTags.objects.filter(page_name='commercial-listing').first()
     context = {
         'list': paged_listing,
         'area': area_choices,

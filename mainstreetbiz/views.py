@@ -67,7 +67,7 @@ def sellingProcess(request):
 def about(request):
     about = About.objects.filter().first()
     meta = MetaTags.objects.filter(page_name='about-business').first()
-    context = {'about': about}
+    context = {'about': about, 'meta': meta}
     context.update(static_query())
     return render(request, 'about/about.html', context)
 
@@ -75,6 +75,6 @@ def about(request):
 def businessFinance(request):
     finance = BusinessFinance.objects.filter().first()
     meta = MetaTags.objects.filter(page_name='small-business-finance')
-    context = {'finance': finance}
+    context = {'finance': finance, 'meta': meta}
     context.update(static_query())
     return render(request, 'home/business-finance.html', context)
