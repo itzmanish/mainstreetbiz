@@ -18,8 +18,6 @@ class BusinessListing(SortableMixin):
     description = models.TextField(blank=True, null=True)
     financing_price = models.IntegerField()
     asking_price = models.IntegerField()
-    realtor = models.ForeignKey(
-        Realtor, on_delete=models.SET_NULL, null=True, blank=True)
     image_main = models.ImageField(upload_to='images/listings/', blank=True)
     image_1 = models.ImageField(
         upload_to='images/listings/', blank=True)
@@ -55,8 +53,6 @@ class CommercialListing(SortableMixin):
     description = models.TextField(blank=True, null=True)
     financing_price = models.IntegerField()
     asking_price = models.IntegerField()
-    realtor = models.ForeignKey(
-        Realtor, on_delete=models.SET_NULL, null=True, blank=True)
     image_main = models.ImageField(upload_to='images/listings/', blank=True)
     image_1 = models.ImageField(
         upload_to='images/listings/', blank=True)
